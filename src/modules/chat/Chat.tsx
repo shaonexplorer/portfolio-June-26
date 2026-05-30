@@ -20,6 +20,9 @@ import {
 } from "@/components/ai-elements/prompt-input";
 import { MessageSquare } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useSidebar } from "@/components/ui/sidebar";
+import { X } from "lucide-react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { Spinner } from "@/components/ui/spinner";
@@ -31,6 +34,7 @@ const Chat = () => {
       api: "/api/chat",
     }),
   });
+  const { toggleSidebar } = useSidebar();
 
   const handleSubmit = (message: PromptInputMessage) => {
     if (message.text.trim()) {
@@ -40,7 +44,16 @@ const Chat = () => {
   };
 
   return (
-    <div className="w-full  relative size-full h-full">
+    <div className="w-full relative size-full h-full pt-8">
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={toggleSidebar}
+        className="absolute top-4 right-4 z-10 hover:bg-muted rounded-full"
+      >
+        <X className="h-5 w-5" />
+        <span className="sr-only">Close chat</span>
+      </Button>
       <div className="flex flex-col h-full">
         <Conversation className="">
           <ConversationContent>

@@ -12,12 +12,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { useSidebar } from "@/components/ui/sidebar";
 import { FloatingDockNav } from "@/modules/NavBar/FloatingDock";
+import { ChatSidebarToggle } from "@/modules/chat/ChatSidebarToggle";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -53,12 +51,13 @@ export default function RootLayout({
         inter.variable,
       )}
     >
-      <body className="min-h-full flex flex-col w-screen overflow-x-clip">
-        <SidebarProvider>
+      <body className="min-h-screen flex flex-col w-screen overflow-x-clip">
+        <SidebarProvider defaultOpen={false}>
           <SidebarInset>
             <FloatingDockNav />
             {children}
-            <SidebarTrigger className="absolute top-2 right-2 rotate-180 z-50" />
+
+            <ChatSidebarToggle />
           </SidebarInset>
           <AppSidebar side="right" />
         </SidebarProvider>

@@ -6,6 +6,7 @@ import {
   IconHome,
   IconNewSection,
   IconTerminal2,
+  IconLayoutGrid,
 } from "@tabler/icons-react";
 
 export function FloatingDockNav() {
@@ -32,6 +33,13 @@ export function FloatingDockNav() {
       ),
       href: "#",
     },
+    {
+      title: "Projects",
+      icon: (
+        <IconLayoutGrid className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/projects",
+    },
 
     {
       title: "Changelog",
@@ -57,12 +65,9 @@ export function FloatingDockNav() {
     },
   ];
   return (
-    <div className="fixed top-[90%] w-full z-30 ">
+    <div className="fixed bottom-4   left-1/2 transform -translate-x-1/2 z-30 flex justify-center items-center p-2 md:p-1 bg-white/80 dark:bg-neutral-900/80 rounded-full shadow-lg">
       <>
-        <FloatingDock
-          mobileClassName="translate-y-20" // only for demo, remove for production
-          items={links}
-        />
+        <FloatingDock items={links} />
       </>
     </div>
   );
