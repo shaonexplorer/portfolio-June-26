@@ -37,7 +37,7 @@ export function RippleEffectBackGround() {
       <div ref={bgRef} className="absolute inset-0 z-0">
         <BackgroundRippleEffect />
       </div>
-      <div className=" mt-40 max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-6 justify-between items-center">
+      <div className=" mt-20 max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-6 justify-between items-center">
         <div className="">
           <h1 ref={titleRef} className="text-5xl sm:text-7xl font-bold ">
             Abir Hasan

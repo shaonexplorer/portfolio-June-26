@@ -1,4 +1,6 @@
 import AboutMe from "@/modules/aboutMe/AboutMe";
+import Contact from "@/modules/Contact/Contact";
+
 import { RippleEffectBackGround } from "@/modules/Hero/BackGround";
 import { Projects } from "@/modules/Projects/Projects";
 import { Skills } from "@/modules/Skills/Skills";
@@ -10,7 +12,8 @@ export default function Home() {
       <Skills />
       <Projects />
       <AboutMe />
-      <div className="h-500"></div>
+      <Contact />
+      {/* <Footer /> */}
     </div>
   );
 }
