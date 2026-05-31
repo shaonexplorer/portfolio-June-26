@@ -28,7 +28,7 @@ export function ProfileImage() {
           >
             <path d="M12 2C6.48 2 2 5.95 2 11c0 2.79 1.63 5.31 4.14 7.01V22l4.02-2.01c.6.09 1.22.13 1.85.13 5.52 0 10-3.95 10-9s-4.48-9-10-9zM12 14c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
           </svg>
-          <span className="font-medium text-lg">Click to chat with AI</span>
+          <span className="font-medium text-lg">Chat with AI</span>
         </div>
       </DirectionAwareHover>
     </div>

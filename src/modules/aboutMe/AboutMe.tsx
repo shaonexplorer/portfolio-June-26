@@ -28,7 +28,7 @@ const steps: JourneyStep[] = [
     description:
       "Intensive full‑stack bootcamp covering modern JavaScript, React, and Node.js. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     date: "Jan 2025",
-    timeStamp: "Sep 25",
+    timeStamp: "2025",
   },
 
   {
@@ -36,14 +36,14 @@ const steps: JourneyStep[] = [
     description:
       "Worked on a SaaS product for Betopia Group, building REST APIs, React dashboards, and CI pipelines. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     date: "Jan 2026 – Apr 2026",
-    timeStamp: "Jan 26",
+    timeStamp: "2026",
   },
   {
     title: "Scrimba AI Engineer Path",
     description:
       "Focused curriculum on AI fundamentals, prompt engineering, and building AI‑first products. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     date: "May 2026",
-    timeStamp: "May 26",
+    timeStamp: "2026",
   },
 ];
 
@@ -52,8 +52,8 @@ const timelineData = steps.map((step) => ({
   title: step.timeStamp,
   content: (
     <Card
-      className="transform transition duration-300 ease-in-out hover:scale-[1.02] max-w-sm"
-      size="sm"
+      className="transform transition duration-300 ease-in-out hover:scale-[1.02] "
+      size="default"
     >
       <CardHeader className="pb-0">
         <CardTitle>{step.title}</CardTitle>
@@ -99,25 +99,25 @@ const loves = [
  */
 export default function AboutMe() {
   return (
-    <section className="space-y-5 py-12 max-w-7xl mx-auto px-4 md:px-8 pb-100">
+    <section className=" space-y-5 py-12 max-w-7xl mx-auto px-4 md:px-8 ">
       {/* Section header */}
       <div className="text-center">
         <h2 className="font-heading text-3xl font-bold">About Me</h2>
-        <p className="mt-2 text-muted-foreground">
+        <p className="mt-2 text-lg text-muted-foreground">
           A quick look at my web‑development journey so far.
         </p>
       </div>
 
       {/* Timeline */}
-      <div className="relative w-full overflow-clip flex flex-col mx-auto md:flex-row gap-6 justify-between">
+      <div className=" relative w-full overflow-clip flex flex-col mx-auto md:flex-row gap-6 md:gap-20 justify-between">
         {/* my mission */}
-        <div className="flex-1 w-full mt-10 md:mt-20 md:sticky top-20 self-start flex flex-col gap-6">
+        <div className="max-w-lg w-full mt-10 md:mt-20 md:sticky top-20 self-start flex flex-col gap-6">
           <Card
-            className="transform transition duration-300 ease-in-out hover:scale-[1.02] "
-            size="sm"
+            className="transform transition duration-300 ease-in-out hover:scale-[1.02] !ring-0"
+            size="default"
           >
             <CardHeader className="pb-0">
-              <CardTitle>My Mission</CardTitle>
+              <CardTitle className="text-lg">My Mission</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
               <CardDescription>
@@ -133,7 +133,7 @@ export default function AboutMe() {
           <div className="flex-1 w-full  self-start">
             <Card
               className="transform transition duration-300 ease-in-out hover:scale-[1.02]"
-              size="sm"
+              size="default"
             >
               <CardHeader className="pb-2">
                 <CardTitle>What I Love Building</CardTitle>

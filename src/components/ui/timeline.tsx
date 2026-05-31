@@ -37,6 +37,14 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className=" bg-white dark:bg-neutral-950 font-sans w-full md:w-fit md:ml-auto flex-1"
       ref={containerRef}
     >
+      <div className="flex flex-col  ">
+        {" "}
+        <h1 className="text-lg font-medium  ml-5 md:mt-22 mt-6">My Journey</h1>
+        <p className="text-muted-foreground mb-10 ml-5 md:mt-5 text-sm">
+          A look at my professional journey so far.
+        </p>
+      </div>
+
       <div
         ref={ref}
         className="relative w-full md:max-w-3xl mx-auto pb-20 justify-center flex flex-col items-center"
@@ -44,7 +52,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex justify-start pt-10 md:pt-20 md:gap-6 w-full md:w-fit"
+            className="flex justify-start pt-10 md:pt-20 md:gap-0 w-full md:w-full"
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm  ">
               <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
@@ -55,7 +63,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               </h3>
             </div>
 
-            <div className="relative pl-20 md:pl-4">
+            <div className="relative pl-20 md:pl-10 flex-1">
               <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
                 {item.title}
               </h3>

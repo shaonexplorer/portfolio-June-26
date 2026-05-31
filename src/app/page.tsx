@@ -10,6 +10,7 @@ export default function Home() {
       <Skills />
       <Projects />
       <AboutMe />
+      <div className="h-500"></div>
     </div>
   );
 }
