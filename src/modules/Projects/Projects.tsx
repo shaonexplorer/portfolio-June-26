@@ -98,7 +98,7 @@ export function Projects() {
                   href={proj.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 text-center px-3 py-2 bg-primary text-white rounded hover:bg-primary/90 transition "
+                  className="flex-1 text-center px-3 py-2 bg-primary text-white dark:text-muted rounded hover:bg-primary/90 transition "
                 >
                   Live Demo
                 </a>

@@ -71,7 +71,7 @@ const FloatingDockMobile = ({
                 <a
                   href={item.href}
                   key={item.title}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-gray-300 to-white text-white shadow-lg backdrop-blur-sm"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg backdrop-blur-sm"
                 >
                   <div className="h-4 w-4 !text-white">{item.icon}</div>
                 </a>

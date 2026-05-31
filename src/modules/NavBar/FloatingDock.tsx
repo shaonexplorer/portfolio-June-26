@@ -13,54 +13,40 @@ export function FloatingDockNav() {
   const links = [
     {
       title: "Home",
-      icon: (
-        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconHome className="h-full w-full text-white" />,
       href: "#",
     },
 
     {
       title: "Products",
-      icon: (
-        <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconTerminal2 className="h-full w-full text-white" />,
       href: "#",
     },
     {
       title: "Components",
-      icon: (
-        <IconNewSection className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconNewSection className="h-full w-full text-white" />,
       href: "#",
     },
     {
       title: "Projects",
-      icon: (
-        <IconLayoutGrid className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconLayoutGrid className="h-full w-full text-white" />,
       href: "/projects",
     },
 
     {
       title: "Changelog",
-      icon: (
-        <IconExchange className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconExchange className="h-full w-full text-white" />,
       href: "#",
     },
 
     {
       title: "Twitter",
-      icon: (
-        <IconBrandX className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconBrandX className="h-full w-full text-white" />,
       href: "#",
     },
     {
       title: "GitHub",
-      icon: (
-        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
+      icon: <IconBrandGithub className="h-full w-full text-white" />,
       href: "#",
     },
   ];
