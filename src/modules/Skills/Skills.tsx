@@ -73,12 +73,12 @@ export function Skills() {
     <section
       ref={containerRef}
       className={cn(
-        "max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8",
+        "max-w-7xl mx-auto pb-12 md:pb-22 px-4 sm:px-6 lg:px-8",
         "space-y-8",
       )}
     >
       {/* Section header */}
-      <header className="text-center mb-8">
+      <header className="text-center mb-18">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
           My Skills
         </h2>

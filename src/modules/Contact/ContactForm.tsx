@@ -87,33 +87,41 @@ export const ContactForm: React.FC = () => {
         Contact Me
       </h2> */}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Name */}
-        <div>
-          <Input
-            placeholder="Your name"
-            {...register("name")}
-            className={cn(errors.name && "border-destructive")}
-          />
-          {errors.name && (
-            <p className="mt-1 text-sm text-destructive">
-              {errors.name.message}
-            </p>
-          )}
-        </div>
+        <div className="flex flex-col md:flex-row gap-4 w-full">
+          {/* Name */}
+          <div className="flex-1">
+            <Input
+              placeholder="Your name"
+              {...register("name")}
+              className={cn(
+                "!min-h-[40px]",
+                errors.name && "border-destructive",
+              )}
+            />
+            {errors.name && (
+              <p className="mt-1 text-sm text-destructive">
+                {errors.name.message}
+              </p>
+            )}
+          </div>
 
-        {/* Email */}
-        <div>
-          <Input
-            type="email"
-            placeholder="you@example.com"
-            {...register("email")}
-            className={cn(errors.email && "border-destructive")}
-          />
-          {errors.email && (
-            <p className="mt-1 text-sm text-destructive">
-              {errors.email.message}
-            </p>
-          )}
+          {/* Email */}
+          <div className="flex-1">
+            <Input
+              type="email"
+              placeholder="you@example.com"
+              {...register("email")}
+              className={cn(
+                "!min-h-[40px]",
+                errors.email && "border-destructive",
+              )}
+            />
+            {errors.email && (
+              <p className="mt-1 text-sm text-destructive">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Subject */}
@@ -121,7 +129,10 @@ export const ContactForm: React.FC = () => {
           <Input
             placeholder="Subject"
             {...register("subject")}
-            className={cn(errors.subject && "border-destructive")}
+            className={cn(
+              "!min-h-[40px]",
+              errors.subject && "border-destructive",
+            )}
           />
           {errors.subject && (
             <p className="mt-1 text-sm text-destructive">
@@ -137,7 +148,7 @@ export const ContactForm: React.FC = () => {
             rows={5}
             {...register("message")}
             className={cn(
-              "resize-none",
+              "resize-none min-h-[180px]",
               errors.message && "border-destructive",
             )}
           />

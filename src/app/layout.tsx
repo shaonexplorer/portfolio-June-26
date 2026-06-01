@@ -4,16 +4,9 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import { AppSidebar } from "@/components/app-sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { useSidebar } from "@/components/ui/sidebar";
+
 import { FloatingDockNav } from "@/modules/NavBar/FloatingDock";
 import { ChatSidebarToggle } from "@/modules/chat/ChatSidebarToggle";
 

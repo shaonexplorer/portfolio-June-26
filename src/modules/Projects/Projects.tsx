@@ -55,10 +55,10 @@ export function Projects() {
   return (
     <section
       ref={containerRef}
-      className="py-12 px-4 md:px-8 max-w-7xl mx-auto "
+      className="py-12 md:py-22 px-4 md:px-8 max-w-7xl mx-auto "
     >
       <h2 className="text-3xl font-bold mb-4 text-center">Recent Projects</h2>
-      <p className="text-center text-neutral-600 dark:text-neutral-300 mb-8 max-w-2xl mx-auto">
+      <p className="text-center text-neutral-600 dark:text-neutral-300 mb-8 max-w-2xl mx-auto mb-18">
         A selection of recent work showcasing various technologies, live demos,
         and source code repositories.
       </p>

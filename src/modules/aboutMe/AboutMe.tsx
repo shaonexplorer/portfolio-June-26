@@ -99,7 +99,7 @@ const loves = [
  */
 export default function AboutMe() {
   return (
-    <section className=" space-y-5 py-12 max-w-7xl mx-auto px-4 md:px-8 ">
+    <section className=" space-y-5 py-12 md:py-22 max-w-7xl mx-auto px-4 md:px-8 ">
       {/* Section header */}
       <div className="text-center">
         <h2 className="font-heading text-3xl font-bold">About Me</h2>
