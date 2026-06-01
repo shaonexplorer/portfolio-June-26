@@ -71,7 +71,7 @@ export function Skills() {
 
   return (
     <section
-      ref={containerRef}
+      id="skills" ref={containerRef}
       className={cn(
         "max-w-7xl mx-auto pb-12 md:pb-22 px-4 sm:px-6 lg:px-8",
         "space-y-8",

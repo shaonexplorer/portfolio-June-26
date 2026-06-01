@@ -7,40 +7,40 @@ export function FloatingDockNav() {
     {
       title: "Home",
       icon: <IconHome className="h-full w-full text-primary" />,
-      href: "#",
+      href: "#home",
     },
 
     {
       title: "Skills",
       icon: <Layers className="h-full w-full text-primary" />,
-      href: "#",
+      href: "#skills",
     },
     {
       title: "Projects",
       icon: <Presentation className="h-full w-full text-primary" />,
-      href: "#",
+      href: "#projects",
     },
     {
       title: "About Me",
       icon: <BookOpenText className="h-full w-full text-primary" />,
-      href: "#",
+      href: "#about",
     },
 
     {
       title: "Contact",
       icon: <Mail className="h-full w-full text-primary" />,
-      href: "#",
+      href: "#contact",
     },
 
     // {
     //   title: "Twitter",
     //   icon: <IconBrandX className="h-full w-full text-white" />,
-    //   href: "#",
+    //   href: "#home",
     // },
     // {
     //   title: "GitHub",
     //   icon: <IconBrandGithub className="h-full w-full text-white" />,
-    //   href: "#",
+    //   href: "#home",
     // },
   ];
   return (

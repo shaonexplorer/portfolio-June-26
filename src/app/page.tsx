@@ -7,7 +7,7 @@ import { Skills } from "@/modules/Skills/Skills";
 
 export default function Home() {
   return (
-    <div className=" w-full px-4 sm:px-0">
+    <div id="home" className=" w-full px-4 sm:px-0">
       <RippleEffectBackGround />
       <Skills />
       <Projects />

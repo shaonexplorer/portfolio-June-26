@@ -27,7 +27,10 @@ function Contact() {
     }
   }, []);
   return (
-    <div className="max-w-7xl mx-auto md:py-22 px-4 sm:px-6 lg:px-8 flex flex-col gap-20 pb-12 md:pb-40">
+    <div
+      id="contact"
+      className="max-w-7xl mx-auto md:py-22 px-4 sm:px-6 lg:px-8 flex flex-col gap-20 pb-12 md:pb-40"
+    >
       {/* title */}
 
       <div className="text-center mb-8 md:mb-12">

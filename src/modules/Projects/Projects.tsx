@@ -53,7 +53,7 @@ export function Projects() {
   }, []);
 
   return (
-    <section
+    <section id="projects"
       ref={containerRef}
       className="py-12 md:py-22 px-4 md:px-8 max-w-7xl mx-auto "
     >

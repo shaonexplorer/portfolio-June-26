@@ -99,7 +99,10 @@ const loves = [
  */
 export default function AboutMe() {
   return (
-    <section className=" space-y-5 py-12 md:py-22 max-w-7xl mx-auto px-4 md:px-8 ">
+    <section
+      id="about"
+      className=" space-y-5 py-12 md:py-22 max-w-7xl mx-auto px-4 md:px-8 "
+    >
       {/* Section header */}
       <div className="text-center">
         <h2 className="font-heading text-3xl font-bold">About Me</h2>
@@ -109,9 +112,9 @@ export default function AboutMe() {
       </div>
 
       {/* Timeline */}
-      <div className=" relative w-full overflow-clip flex flex-col mx-auto md:flex-row gap-6 md:gap-20 justify-between">
+      <div className=" relative w-full overflow-clip flex flex-col mx-auto lg:flex-row gap-6 md:gap-20 justify-between">
         {/* my mission */}
-        <div className="max-w-lg w-full mt-10 md:mt-20 md:sticky top-20 self-start flex flex-col gap-6">
+        <div className="lg:max-w-lg w-full mt-10 md:mt-20 lg:sticky top-20 self-start flex flex-col gap-6">
           <Card
             className="transform transition duration-300 ease-in-out hover:scale-[1.02] !ring-0"
             size="default"
