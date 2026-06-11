@@ -27,11 +27,13 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { Spinner } from "@/components/ui/spinner";
 
+const api = process.env.NEXT_PUBLIC_CHAT_API;
+
 const Chat = () => {
   const [input, setInput] = useState("");
   const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({
-      api: "/api/chat",
+      api,
     }),
   });
   const { toggleSidebar } = useSidebar();
