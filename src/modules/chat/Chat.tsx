@@ -26,14 +26,34 @@ import { X } from "lucide-react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { Spinner } from "@/components/ui/spinner";
+import { Suggestion, Suggestions } from "@/components/ai-elements/suggestion";
 
 const api = process.env.NEXT_PUBLIC_CHAT_API;
+
+const suggestions = [
+  "Where do you live ?",
+  "Tell me about your work experience.",
+  "Tell me about your certificates ?",
+];
 
 const Chat = () => {
   const [input, setInput] = useState("");
   const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({
       api,
+      // Intercept the outgoing payload and structure it exactly how Express expects it
+      prepareSendMessagesRequest({ messages }) {
+        // Grab the text from the very last user message in the array
+        const lastMessage = messages[messages.length - 1];
+        const queryText =
+          lastMessage?.parts?.find((p) => p.type === "text")?.text || "";
+
+        return {
+          body: {
+            query: queryText, // This becomes req.body.query on your Express backend
+          },
+        };
+      },
     }),
   });
   const { toggleSidebar } = useSidebar();
@@ -41,8 +61,13 @@ const Chat = () => {
   const handleSubmit = (message: PromptInputMessage) => {
     if (message.text.trim()) {
       sendMessage({ text: message.text });
+
       setInput("");
     }
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    sendMessage({ text: suggestion });
   };
 
   return (
@@ -101,6 +126,18 @@ const Chat = () => {
           {/* <ConversationDownload messages={messages} /> */}
           <ConversationScrollButton />
         </Conversation>
+
+        {/* suggestions  */}
+
+        <Suggestions className="flex flex-wrap w-fit px-4">
+          {suggestions.map((suggestion) => (
+            <Suggestion
+              key={suggestion}
+              onClick={handleSuggestionClick}
+              suggestion={suggestion}
+            />
+          ))}
+        </Suggestions>
 
         <div className="px-4 pb-4">
           <PromptInput
