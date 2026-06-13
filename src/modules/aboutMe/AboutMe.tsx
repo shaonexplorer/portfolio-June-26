@@ -1,49 +1,140 @@
-import * as React from "react";
+"use client";
 
+import * as React from "react";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardContent,
-  CardFooter,
 } from "@/components/ui/card";
 import { Timeline } from "@/components/ui/timeline";
 import { Code, Bot, Zap, Lightbulb } from "lucide-react";
 
-// Timeline entry type
+// Timeline entry type updated to support rich JSX content
 interface JourneyStep {
-  /** Short title of the step */
   title: string;
-  /** Human‑readable description */
-  description: string;
-  /** Date string displayed in the card footer */
+  description: React.ReactNode;
   date: string;
-  timeStamp: string; // Optional timestamp for sorting or future use
+  timeStamp: string;
 }
 
 const steps: JourneyStep[] = [
   {
     title: "Programming Hero Bootcamp",
-    description:
-      "Intensive full‑stack bootcamp covering modern JavaScript, React, and Node.js. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    date: "Jan 2025",
+    date: "Jan 2025",
     timeStamp: "2025",
+    description: (
+      <div className="space-y-4 text-neutral-700 dark:text-neutral-300">
+        <p className="text-base">
+          Successfully completed an intensive, production-driven full-stack
+          development bootcamp. Developed a rigorous, problem-solving mindset
+          while architecting scalable web applications and mastering modern
+          engineering workflows.
+        </p>
+        <div className="space-y-2">
+          {[
+            {
+              label: "Advanced Frontend Engineering",
+              desc: "Built highly optimized, SEO-friendly user interfaces using Next.js and React leveraging modern rendering strategies (SSR, ISR, and Server Components).",
+            },
+            {
+              label: "Robust Backend Architectures",
+              desc: "Programmed server-side applications with Node.js and Express.js, incorporating specialized backend processing like dynamic PDF generation and secure file streams.",
+            },
+            {
+              label: "Database Design & Management",
+              desc: "Modelled complex data architectures across both SQL and NoSQL systems using PostgreSQL, Prisma (ORM), MongoDB, and Mongoose (ODM).",
+            },
+            {
+              label: "Security & Identity Control",
+              desc: "Engineered secure authentication and authorization pipelines utilizing JWT (JSON Web Tokens), session management, and role-based access controls.",
+            },
+            {
+              label: "Real-World Deliverables",
+              desc: "Successfully shipped multiple full-stack real-world projects from scratch, emphasizing clean code architecture, optimized API endpoints, and production-ready deployments.",
+            },
+          ].map((item, index) => (
+            <p
+              key={index}
+              className="text-sm pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-neutral-400"
+            >
+              <span className="font-bold text-neutral-900 dark:text-neutral-100">
+                {item.label}:
+              </span>{" "}
+              {item.desc}
+            </p>
+          ))}
+        </div>
+      </div>
+    ),
   },
-
   {
     title: "Junior MERN Developer at SoftVence",
-    description:
-      "Worked on a SaaS product for Betopia Group, building REST APIs, React dashboards, and CI pipelines. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    date: "Jan 2026 – Apr 2026",
+    date: "Jan 2026 – Apr 2026",
     timeStamp: "2026",
+    description: (
+      <div className="space-y-3 text-neutral-700 dark:text-neutral-300 text-sm md:text-base">
+        <p>
+          Contributed to a high-performance SaaS product ecosystem for the
+          Betopia Group, engineering scalable REST APIs, responsive dashboard
+          interfaces, and automating delivery sequences.
+        </p>
+        <div className="space-y-1.5">
+          <p className="pl-4 relative before:content-['•'] before:absolute before:left-0 text-sm">
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">
+              API Engineering:
+            </span>{" "}
+            Developed secure, structured REST APIs utilizing Express.js and
+            optimized MongoDB aggregation pipelines.
+          </p>
+          <p className="pl-4 relative before:content-['•'] before:absolute before:left-0 text-sm">
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">
+              Frontend Architecture:
+            </span>{" "}
+            Built state-driven management interfaces and interactive graphs
+            using React, Redux Toolkit, and Tailwind CSS.
+          </p>
+          <p className="pl-4 relative before:content-['•'] before:absolute before:left-0 text-sm">
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">
+              DevOps Automation:
+            </span>{" "}
+            Maintained integrated CI/CD pipelines to achieve automated staging
+            environments and testing workflows.
+          </p>
+        </div>
+      </div>
+    ),
   },
   {
     title: "Scrimba AI Engineer Path",
-    description:
-      "Focused curriculum on AI fundamentals, prompt engineering, and building AI‑first products. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    date: "May 2026",
+    date: "May 2026",
     timeStamp: "2026",
+    description: (
+      <div className="space-y-3 text-neutral-700 dark:text-neutral-300 text-sm md:text-base">
+        <p>
+          Completed an intensive specialized path dedicated to deep engineering
+          frameworks around Large Language Models (LLMs) and artificial
+          intelligence agents.
+        </p>
+        <div className="space-y-1.5">
+          <p className="pl-4 relative before:content-['•'] before:absolute before:left-0 text-sm">
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">
+              AI-First Products:
+            </span>{" "}
+            Handled embedding generations, prompt vector optimizations, and
+            functional tool-calling loops.
+          </p>
+          <p className="pl-4 relative before:content-['•'] before:absolute before:left-0 text-sm">
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">
+              Contextual Memory:
+            </span>{" "}
+            Built real-time semantic application instances managing contextual
+            user memory state patterns.
+          </p>
+        </div>
+      </div>
+    ),
   },
 ];
 
@@ -51,22 +142,22 @@ const steps: JourneyStep[] = [
 const timelineData = steps.map((step) => ({
   title: step.timeStamp,
   content: (
-    <Card
-      className="transform transition duration-300 ease-in-out hover:scale-[1.02] "
-      size="default"
-    >
-      <CardHeader className="pb-0">
-        <CardTitle>{step.title}</CardTitle>
-        <CardDescription>{step.date}</CardDescription>
+    <Card className="transform transition duration-300 ease-in-out hover:scale-[1.01] shadow-md border-neutral-200 dark:border-neutral-800">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-xl font-bold text-neutral-900 dark:text-neutral-50">
+          {step.title}
+        </CardTitle>
+        <CardDescription className="text-sm font-semibold text-neutral-500 dark:text-neutral-400">
+          {step.date}
+        </CardDescription>
       </CardHeader>
-      <CardContent className="pt-0">
-        <CardDescription>{step.description}</CardDescription>
+      <CardContent className="pt-0 text-neutral-600 dark:text-neutral-300">
+        {step.description}
       </CardContent>
     </Card>
   ),
 }));
 
-// List of things I love building
 const loves = [
   {
     icon: Code,
@@ -93,72 +184,65 @@ const loves = [
   },
 ];
 
-/**
- * AboutMe – displays a short introduction and a timeline of the developer’s journey.
- * Each entry is rendered inside the shared `Timeline` component using styled `Card`s.
- */
 export default function AboutMe() {
   return (
     <section
       id="about"
-      className=" space-y-5 py-12 md:py-22 max-w-7xl mx-auto px-4 md:px-8 "
+      className="space-y-5 py-12 md:py-22 max-w-7xl mx-auto px-4 md:px-8"
     >
       {/* Section header */}
       <div className="text-center">
-        <h2 className="font-heading text-3xl font-bold">About Me</h2>
+        <h2 className="font-heading text-3xl font-bold text-neutral-950 dark:text-neutral-50">
+          About Me
+        </h2>
         <p className="mt-2 text-lg text-muted-foreground">
           A quick look at my web‑development journey so far.
         </p>
       </div>
 
-      {/* Timeline */}
-      <div className=" relative w-full overflow-clip flex flex-col mx-auto lg:flex-row gap-6 md:gap-20 justify-between">
-        {/* my mission */}
+      {/* Timeline Layout */}
+      <div className="relative w-full overflow-clip flex flex-col mx-auto lg:flex-row gap-6 md:gap-10 justify-between px-[1px]">
+        {/* Left Column: My Mission & Interests */}
         <div className="lg:max-w-lg w-full mt-10 md:mt-20 lg:sticky top-20 self-start flex flex-col gap-6">
-          <Card
-            className="transform transition duration-300 ease-in-out hover:scale-[1.02] !ring-0"
-            size="default"
-          >
-            <CardHeader className="pb-0">
-              <CardTitle className="text-lg">My Mission</CardTitle>
+          <Card className="transform transition duration-300 ease-in-out hover:scale-[1.02] border-neutral-200 dark:border-neutral-800">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg font-bold">My Mission</CardTitle>
             </CardHeader>
-            <CardContent className="pt-0">
-              <CardDescription>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                ipsum esse natus eius beatae expedita quibusdam quo porro ipsam
-                consequuntur repellendus, repudiandae placeat nulla aut maxime
-                sit, cumque numquam distinctio.
+            <CardContent>
+              <CardDescription className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed">
+                Bridge the power of AI with robust full‑stack development to
+                craft fast, secure, and intelligent web solutions that solve
+                real‑world problems and drive measurable growth.
               </CardDescription>
             </CardContent>
           </Card>
 
-          {/* what i love building */}
-          <div className="flex-1 w-full  self-start">
-            <Card
-              className="transform transition duration-300 ease-in-out hover:scale-[1.02]"
-              size="default"
-            >
-              <CardHeader className="pb-2">
-                <CardTitle>What I Love Building</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0 space-y-4">
-                {loves.map((item, i) => (
-                  <div key={i} className="flex items-start space-x-3">
-                    <item.icon className="h-5 w-5 flex-shrink-0 text-primary" />
-                    <div>
-                      <h4 className="font-medium">{item.title}</h4>
-                      <p className="text-sm text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </div>
+          <Card className="transform transition duration-300 ease-in-out hover:scale-[1.02] border-neutral-200 dark:border-neutral-800">
+            <CardHeader className="pb-2">
+              <CardTitle className="font-bold">What I Love Building</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {loves.map((item, i) => (
+                <div key={i} className="flex items-start space-x-3">
+                  <item.icon className="h-5 w-5 flex-shrink-0 text-neutral-900 dark:text-neutral-50" />
+                  <div>
+                    <h4 className="font-medium text-neutral-900 dark:text-neutral-100 text-sm">
+                      {item.title}
+                    </h4>
+                    <p className="text-xs text-muted-foreground">
+                      {item.description}
+                    </p>
                   </div>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
         </div>
 
-        <Timeline data={timelineData} />
+        {/* Right Column: Timeline Component */}
+        <div className="flex-1 w-full ">
+          <Timeline data={timelineData} />
+        </div>
       </div>
     </section>
   );

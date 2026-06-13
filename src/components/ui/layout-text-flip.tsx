@@ -20,34 +20,43 @@ export const LayoutTextFlip = ({
     }, duration);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [words.length, duration]);
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex flex-wrap items-center gap-x-2 gap-y-3">
+      {/* Static Subtext Segment with subtle premium gradient */}
       <motion.span
         layoutId="subtext"
-        className="text-2xl  tracking-tight drop-shadow-lg md:text-4xl "
+        className="text-2xl font-semibold tracking-tight md:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-neutral-800 to-neutral-500 dark:from-neutral-200 dark:to-neutral-400 py-1"
       >
         {text}
       </motion.span>
 
+      {/* Outer Word Capsule Plate Wrapper */}
       <motion.span
         layout
-        className="relative w-fit overflow-hidden rounded-md border border-transparent bg-white px-4 py-2 font-sans text-2xl font-bold tracking-tight text-black shadow-sm ring shadow-black/10 ring-black/10 drop-shadow-lg md:text-4xl dark:bg-neutral-900 dark:text-white dark:shadow-sm dark:ring-1 dark:shadow-white/10 dark:ring-white/10"
+        className="relative w-fit overflow-hidden rounded-xl border border-neutral-200/60 bg-neutral-50/50 px-4 py-1.5 font-sans text-2xl font-extrabold tracking-tight shadow-sm ring-1 ring-black/5 md:text-4xl dark:bg-neutral-900/60 dark:border-neutral-800/80 dark:ring-white/5"
       >
         <AnimatePresence mode="popLayout">
+          {/* Active Text Element Layer featuring targeted contrast colors */}
           <motion.span
             key={currentIndex}
-            initial={{ y: -40, filter: "blur(10px)" }}
+            initial={{ y: -30, filter: "blur(6px)", opacity: 0 }}
             animate={{
               y: 0,
               filter: "blur(0px)",
+              opacity: 1,
             }}
-            exit={{ y: 50, filter: "blur(10px)", opacity: 0 }}
+            exit={{ y: 30, filter: "blur(6px)", opacity: 0 }}
             transition={{
-              duration: 0.5,
+              type: "spring",
+              stiffness: 120,
+              damping: 15,
+              duration: 0.4,
             }}
-            className={cn("inline-block whitespace-nowrap")}
+            className={cn(
+              "inline-block whitespace-nowrap bg-clip-text text-transparent pb-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-cyan-400 dark:via-blue-400 dark:to-purple-400",
+            )}
           >
             {words[currentIndex]}
           </motion.span>

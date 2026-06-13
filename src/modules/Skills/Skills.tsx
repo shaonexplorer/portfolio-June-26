@@ -16,26 +16,34 @@ export function Skills() {
       title: "Frontend",
       subtitle: "UI/UX and client‑side technologies",
       skills: [
-        { name: "React", level: 95, color: "from-purple-500 to-indigo-600" },
-        { name: "Next.js", level: 92, color: "from-blue-500 to-cyan-600" },
-        { name: "TypeScript", level: 93, color: "from-sky-500 to-indigo-600" },
-        { name: "Tailwind CSS", level: 96, color: "from-pink-500 to-rose-600" },
+        { name: "React", level: 80, color: "from-purple-500 to-indigo-600" },
+        { name: "Next.js", level: 85, color: "from-blue-500 to-cyan-600" },
+        { name: "TypeScript", level: 88, color: "from-sky-500 to-indigo-600" },
+        { name: "Tailwind CSS", level: 92, color: "from-pink-500 to-rose-600" },
       ],
     },
     {
       title: "Backend",
       subtitle: "Server‑side logic and APIs",
       skills: [
-        { name: "Node.js", level: 90, color: "from-green-500 to-emerald-600" },
-        { name: "GraphQL", level: 80, color: "from-rose-500 to-pink-600" },
-        { name: "Docker", level: 75, color: "from-emerald-500 to-green-600" },
+        { name: "Node.js", level: 87, color: "from-green-500 to-emerald-600" },
+        { name: "PostgreSQL", level: 89, color: "from-rose-500 to-pink-600" },
+        { name: "MongoDB", level: 88, color: "from-emerald-500 to-green-600" },
+        {
+          name: "Express.js",
+          level: 92,
+          color: "from-purple-500 to-indigo-600",
+        },
       ],
     },
     {
       title: "AI & Services",
       subtitle: "Integrations with AI SDKs and cloud services",
       skills: [
-        { name: "AI SDKs", level: 88, color: "from-purple-400 to-fuchsia-600" },
+        { name: "AI SDKs", level: 92, color: "from-purple-400 to-fuchsia-600" },
+        { name: "AI Agent", level: 88, color: "from-blue-500 to-cyan-600" },
+        { name: "MCP Server", level: 90, color: "from-sky-500 to-indigo-600" },
+        { name: "RAG", level: 92, color: "from-pink-500 to-rose-600" },
       ],
     },
   ];
@@ -71,7 +79,8 @@ export function Skills() {
 
   return (
     <section
-      id="skills" ref={containerRef}
+      id="skills"
+      ref={containerRef}
       className={cn(
         "max-w-7xl mx-auto pb-12 md:pb-22 px-4 sm:px-6 lg:px-8",
         "space-y-8",
@@ -118,7 +127,7 @@ export function Skills() {
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="w-full h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                       <div
                         ref={(el) => {
                           barRefs.current[globalIdx] = el;

@@ -10,13 +10,14 @@ import { Button } from "@/components/ui/button";
 // import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import gsap from "gsap";
+import { toast } from "sonner";
 
 // ---------------------------------------------------------------
 // Validation schema (zod) – defines required fields and formats.
 // ---------------------------------------------------------------
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
+  email: z.email("Invalid email address"),
   subject: z.string().min(1, "Subject is required"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
@@ -63,21 +64,31 @@ export const ContactForm: React.FC = () => {
   // Simulated submit – replace with real API call as needed.
   // ---------------------------------------------------------------
   const onSubmit = async (data: ContactFormValues) => {
+    const baseApi = process.env.NEXT_PUBLIC_MAIL_API as string;
     try {
       // TODO: integrate with backend (e.g., /api/contact)
-      await new Promise((r) => setTimeout(r, 1000)); // mock latency
-      // toast({
-      //   title: "Message sent",
-      //   description: "Your message has been delivered successfully.",
-      //   variant: "default",
-      // });
+      const result = await fetch(baseApi, {
+        method: "POST", // 👈 Must specify POST for sending data
+        headers: {
+          "Content-Type": "application/json", // 👈 Tells the backend you're sending JSON
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          text: data.message,
+        }),
+      });
+
+      if (!result.ok) {
+        throw new Error(`Server error: ${result.status}`);
+      } else toast.success("Your message has been delivered successfully.");
+
+      const responseData = await result.json();
+      console.log({ responseData });
       reset();
     } catch (error) {
-      // toast({
-      //   title: "Error sending message",
-      //   description: "Please try again later.",
-      //   variant: "destructive",
-      // });
+      toast.error("Error sending message");
     }
   };
 

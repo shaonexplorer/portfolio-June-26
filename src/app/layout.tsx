@@ -55,7 +55,7 @@ export default function RootLayout({
           <AppSidebar side="right" />
         </SidebarProvider>
 
-        <Toaster />
+        <Toaster richColors />
       </body>
     </html>
   );
