@@ -112,7 +112,7 @@ const Chat = () => {
             )}
 
             {/* Loading indicator while the assistant is "thinking" */}
-            {status == "streaming" && (
+            {(status == "submitted" || status == "streaming") && (
               <Message from={"assistant"} key={"thinking"}>
                 <MessageContent className="flex items-center flex-row gap-2">
                   <Spinner className="h-4 w-4 " />
