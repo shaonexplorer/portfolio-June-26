@@ -13,7 +13,6 @@ export default function Home() {
       <Projects />
       <AboutMe />
       <Contact />
-      {/* <Footer /> */}
     </div>
   );
 }
