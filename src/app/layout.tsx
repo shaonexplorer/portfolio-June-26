@@ -9,6 +9,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 import { FloatingDockNav } from "@/modules/NavBar/FloatingDock";
 import { ChatSidebarToggle } from "@/modules/chat/ChatSidebarToggle";
+import { ThemeProvider } from "@/provider/theme-provider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -45,17 +46,24 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-screen flex flex-col w-screen overflow-x-clip">
-        <SidebarProvider defaultOpen={false}>
-          <SidebarInset>
-            <FloatingDockNav />
-            {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SidebarProvider defaultOpen={false}>
+            <SidebarInset>
+              <FloatingDockNav />
+              {children}
 
-            <ChatSidebarToggle />
-          </SidebarInset>
-          <AppSidebar side="right" />
-        </SidebarProvider>
+              <ChatSidebarToggle />
+            </SidebarInset>
+            <AppSidebar side="right" />
+          </SidebarProvider>
 
-        <Toaster richColors />
+          <Toaster richColors />
+        </ThemeProvider>
       </body>
     </html>
   );

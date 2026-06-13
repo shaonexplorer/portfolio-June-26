@@ -2,15 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 
-/**
- * Skills – displays categorized skill sets inside cards.
- * Each card has a header (title + subtitle) and a list of animated proficiency bars.
- * GSAP animates each bar from 0% to its target level on mount.
- */
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export function Skills() {
-  // Categorized skill data
   const categories = [
     {
       title: "Frontend",
@@ -49,42 +48,76 @@ export function Skills() {
   ];
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const barRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   useEffect(() => {
+    if (!containerRef.current) return;
+
     const ctx = gsap.context(() => {
-      // Animate every bar sequentially with a small stagger.
-      barRefs.current.forEach((bar, i) => {
-        if (!bar) return;
-        // Retrieve level from flattened skill list
-        const flatSkills = categories.flatMap((c) => c.skills);
-        const level = flatSkills[i]?.level || 0;
+      // 1. Animate the section headers and skill cards container
+      gsap.from(".skill-card", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power3.out",
+      });
+
+      // 2. Query all bar elements inside the context and animate cleanly via native targets
+      const bars = gsap.utils.toArray<HTMLElement>(".skill-bar");
+
+      bars.forEach((bar) => {
+        const targetWidth = bar.getAttribute("data-level") || "0";
+
+        // Progress Bar Horizontal Growth Animation
         gsap.fromTo(
           bar,
-          { width: 0 },
+          { width: "0%" },
           {
-            width: `${level}%`,
-            duration: 1,
-            ease: "power2.out",
-            delay: i * 0.15,
+            width: `${targetWidth}%`,
+            duration: 1.2,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: bar,
+              start: "top 90%",
+              toggleActions: "play none none none",
+            },
           },
         );
+
+        // Optional: Interactive matching dynamic counter ticker text effect
+        const parent = bar.closest(".skill-item-container");
+        const counter = parent?.querySelector(".skill-percent-counter");
+        if (counter) {
+          const counterObj = { value: 0 };
+          gsap.to(counterObj, {
+            value: parseInt(targetWidth, 10),
+            duration: 1.2,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: bar,
+              start: "top 90%",
+            },
+            onUpdate: () => {
+              counter.textContent = `${Math.round(counterObj.value)}%`;
+            },
+          });
+        }
       });
     }, containerRef);
+
     return () => ctx.revert();
   }, []);
-
-  // Flattened list for reference when assigning refs
-  const flatSkills = categories.flatMap((c) => c.skills);
 
   return (
     <section
       id="skills"
       ref={containerRef}
-      className={cn(
-        "max-w-7xl mx-auto pb-12 md:pb-22 px-4 sm:px-6 lg:px-8",
-        "space-y-8",
-      )}
+      className="max-w-7xl mx-auto pb-12 md:pb-22 px-4 sm:px-6 lg:px-8 space-y-8"
     >
       {/* Section header */}
       <header className="text-center mb-18">
@@ -98,13 +131,10 @@ export function Skills() {
 
       {/* Category cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {categories.map((cat, catIdx) => (
+        {categories.map((cat) => (
           <div
             key={cat.title}
-            className={cn(
-              "bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col",
-              "hover:shadow-lg transition-shadow",
-            )}
+            className="skill-card bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col hover:shadow-lg transition-shadow duration-300"
           >
             <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-1">
               {cat.title}
@@ -112,37 +142,35 @@ export function Skills() {
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
               {cat.subtitle}
             </p>
+
             <div className="flex flex-col gap-4">
-              {cat.skills.map((skill, skillIdx) => {
-                const globalIdx = flatSkills.findIndex(
-                  (s) => s.name === skill.name,
-                );
-                return (
-                  <div key={skill.name} className="flex flex-col">
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                        {skill.name}
-                      </span>
-                      <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                      <div
-                        ref={(el) => {
-                          barRefs.current[globalIdx] = el;
-                        }}
-                        className={cn(
-                          "h-full rounded-full",
-                          skill.color
-                            ? `bg-gradient-to-r ${skill.color}`
-                            : "bg-gradient-to-r from-purple-500 to-indigo-600",
-                        )}
-                      />
-                    </div>
+              {cat.skills.map((skill) => (
+                <div
+                  key={skill.name}
+                  className="skill-item-container flex flex-col"
+                >
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                      {skill.name}
+                    </span>
+                    <span className="skill-percent-counter text-sm font-medium text-gray-600 dark:text-gray-400">
+                      0%
+                    </span>
                   </div>
-                );
-              })}
+
+                  <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div
+                      data-level={skill.level}
+                      className={cn(
+                        "skill-bar h-full rounded-full w-0",
+                        skill.color
+                          ? `bg-gradient-to-r ${skill.color}`
+                          : "bg-gradient-to-r from-purple-500 to-indigo-600",
+                      )}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         ))}
