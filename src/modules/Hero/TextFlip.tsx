@@ -9,32 +9,60 @@ import { Mail } from "lucide-react";
 export function TextFlip() {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
-  const buttonsGroupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 1. Entry stagger animation timeline for a seamless page intro
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
+      // 1. Smooth page entry animation sequence
       tl.from(textRef.current, {
         opacity: 0,
         y: 15,
         duration: 0.6,
-        delay: 0.2, // Subtle beat after the main name heading appears
+        delay: 0.2,
       }).from(
         ".social-btn",
         {
           opacity: 0,
           y: 15,
-          scale: 0.95,
           duration: 0.5,
-          stagger: 0.08, // Staggers button entry one after another
+          stagger: 0.08,
+          // Clear transforming styles once entry concludes so it's fresh for interactions
+          clearProps: "y,opacity",
         },
-        "-=0.4", // Overlap sequence slightly
+        "-=0.4",
       );
+
+      // 2. High-performance declarative event handlers using GSAP
+      const buttons = gsap.utils.toArray<HTMLElement>(".social-btn");
+
+      buttons.forEach((btn) => {
+        // Create an optimized local interaction state tween
+        const hoverTween = gsap.to(btn, {
+          scale: 1.04,
+          duration: 0.2,
+          ease: "power2.out",
+          paused: true, // Don't run immediately
+        });
+
+        const onMouseEnter = () => hoverTween.play();
+        const onMouseLeave = () => hoverTween.reverse();
+
+        const onMouseDown = () => {
+          gsap.to(btn, { scale: 0.97, duration: 0.1, ease: "power1.out" });
+        };
+        const onMouseUp = () => {
+          gsap.to(btn, { scale: 1.04, duration: 0.15, ease: "power1.out" });
+        };
+
+        btn.addEventListener("mouseenter", onMouseEnter);
+        btn.addEventListener("mouseleave", onMouseLeave);
+        btn.addEventListener("mousedown", onMouseDown);
+        btn.addEventListener("mouseup", onMouseUp);
+      });
     }, containerRef);
 
-    return () => ctx.revert();
+    return () => ctx.revert(); // Safely detaches event listeners & resets state
   }, []);
 
   return (
@@ -61,14 +89,13 @@ export function TextFlip() {
         delivering high-quality code and driving impactful projects forward.
       </p>
 
-      {/* 2. Used highly optimized utility micro-scales inside hover/active targets */}
-      <div ref={buttonsGroupRef} className="flex flex-wrap gap-4 mt-6">
+      <div className="flex flex-wrap gap-4 mt-6">
         {/* GitHub Link */}
         <a
           href="https://github.com/shaonexplorer"
           target="_blank"
           rel="noopener noreferrer"
-          className="social-btn flex items-center px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-850 rounded-lg text-sm font-semibold shadow-sm transition-all duration-200 hover:scale-[1.04] active:scale-[0.97] will-change-transform"
+          className="social-btn flex items-center px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-850 rounded-lg text-sm font-semibold shadow-sm will-change-transform"
         >
           <IconBrandGithub className="w-5 h-5 mr-2 text-neutral-700 dark:text-green-300" />
           <span className="bg-clip-text text-neutral-600 dark:text-transparent dark:bg-gradient-to-r from-teal-600 to-emerald-600 dark:from-teal-400 dark:to-emerald-400">
@@ -81,7 +108,7 @@ export function TextFlip() {
           href="https://linkedin.com/in/abir-hasan-khan"
           target="_blank"
           rel="noopener noreferrer"
-          className="social-btn flex items-center px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-850 rounded-lg text-sm font-semibold shadow-sm transition-all duration-200 hover:scale-[1.04] active:scale-[0.97] will-change-transform"
+          className="social-btn flex items-center px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-850 rounded-lg text-sm font-semibold shadow-sm will-change-transform"
         >
           <IconBrandLinkedin className="w-5 h-5 mr-2 text-neutral-700 dark:text-blue-300" />
           <span className="bg-clip-text text-neutral-600 dark:text-transparent dark:bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-indigo-400 dark:to-cyan-400">
@@ -92,7 +119,7 @@ export function TextFlip() {
         {/* Contact Link */}
         <a
           href="mailto:shaonexplorer@gmail.com"
-          className="social-btn flex items-center px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-850 rounded-lg text-sm font-semibold shadow-sm transition-all duration-200 hover:scale-[1.04] active:scale-[0.97] will-change-transform"
+          className="social-btn flex items-center px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-850 rounded-lg text-sm font-semibold shadow-sm will-change-transform"
         >
           <Mail className="w-5 h-5 mr-2 text-neutral-700 dark:text-orange-300" />
           <span className="bg-clip-text text-neutral-600 dark:text-transparent dark:bg-gradient-to-r from-orange-600 to-pink-600 dark:from-amber-400 dark:to-orange-400">
