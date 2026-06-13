@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import gsap from "gsap";
 
 export const DirectionAwareHover = ({
   imageUrl,
@@ -61,12 +62,28 @@ export const DirectionAwareHover = ({
     return d;
   };
 
+  useEffect(() => {
+    // Create a scoped GSAP context for clean memory management
+    const ctx = gsap.context(() => {
+      // Infinitely repeating yoyo animation on the floating text/icon
+      gsap.to(".yoyo-bounce", {
+        y: -10, // Move up by 10px
+        duration: 0.8,
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: -1, // Infinite loop
+      });
+    });
+
+    return () => ctx.revert(); // Cleanup on unmount
+  }, []);
+
   return (
     <motion.div
       onMouseEnter={handleMouseEnter}
       ref={ref}
       className={cn(
-        "md:h-120 w-full h-full md:w-120 aspect-square  bg-transparent rounded-lg overflow-hidden group/card relative z-20",
+        "md:h-120 w-full h-full md:w-120 aspect-square bg-gray-50 dark:bg-neutral-900 rounded-lg overflow-hidden group/card relative z-20 yoyo-bounce",
         className,
       )}
     >
@@ -80,7 +97,7 @@ export const DirectionAwareHover = ({
           <motion.div className="group-hover/card:block hidden absolute inset-0 w-full h-full bg-black/40 z-10 transition duration-500" />
           <motion.div
             variants={variants}
-            className="h-full w-full relative bg-gray-50 dark:bg-black"
+            className="h-full w-full relative bg-gray-50 dark:bg-neutral-900"
             transition={{
               duration: 0.2,
               ease: "easeOut",
