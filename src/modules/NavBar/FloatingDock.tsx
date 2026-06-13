@@ -44,7 +44,7 @@ export function FloatingDockNav() {
     // },
   ];
   return (
-    <div className="fixed top-4 md:top-auto md:bottom-4 h-fit w-fit right-4 md:left-1/2 transform md:-translate-x-1/2 z-30 flex justify-center items-center p-0 md:p-1 bg-white/80 dark:bg-neutral-900/80 rounded-full shadow-lg">
+    <div className="fixed top-4 md:top-auto md:bottom-4 h-fit w-fit right-4 md:left-1/2 transform md:-translate-x-1/2 z-50 flex justify-center items-center   bg-transparent rounded-full shadow-lg  ">
       <>
         <FloatingDock items={links} />
       </>
