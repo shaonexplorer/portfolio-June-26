@@ -68,7 +68,8 @@ export const DirectionAwareHover = ({
       // Infinitely repeating yoyo animation on the floating text/icon
       gsap.to(".yoyo-bounce", {
         y: -10, // Move up by 10px
-        duration: 0.8,
+
+        duration: 1.5,
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1, // Infinite loop

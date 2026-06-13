@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export const BackgroundRippleEffect = ({
   rows = 8,
-  cols = 27,
+  cols = 35,
   cellSize = 56,
 }: {
   rows?: number;
