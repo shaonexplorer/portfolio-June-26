@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Timeline } from "@/components/ui/timeline";
 import { Code, Bot, Zap, Lightbulb } from "lucide-react";
+import Image from "next/image";
 
 // Timeline entry type updated to support rich JSX content
 interface JourneyStep {
@@ -204,6 +205,27 @@ export default function AboutMe() {
       <div className="relative w-full overflow-clip flex flex-col mx-auto lg:flex-row gap-6 md:gap-10 justify-between px-[1px]">
         {/* Left Column: My Mission & Interests */}
         <div className="lg:max-w-lg w-full mt-10 md:mt-20 lg:sticky top-20 self-start flex flex-col gap-6">
+          {/* profile image */}
+
+          <div className="w-full px-4 py-2 rounded-md bg-card flex items-center gap-2 md:hidden">
+            <div className="flex flex-col">
+              <p className="font-bold text-md">Abir Hasan</p>
+              <p className=" text-sm text-muted-foreground">
+                Jr MERN Developer
+              </p>
+            </div>
+            <div className="rounded-full w-15 h-15   relative overflow-hidden ml-auto  ">
+              <Image
+                src={"/profile-photo-abir-removebg.png"}
+                fill
+                alt="profile-image"
+                className="object-cover object-top scale-150"
+              />
+            </div>
+          </div>
+
+          {/* mission text */}
+
           <Card className="transform transition duration-300 ease-in-out hover:scale-[1.02] border-neutral-200 dark:border-neutral-800">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg font-bold">My Mission</CardTitle>

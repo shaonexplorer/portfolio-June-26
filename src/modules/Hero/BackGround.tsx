@@ -67,7 +67,7 @@ export function RippleEffectBackGround() {
         <BackgroundRippleEffect />
       </div>
 
-      <div className="mt-20 max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-6 justify-between items-center w-full z-10">
+      <div className="md:mt-20 my-auto max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-6 justify-between items-center w-full z-10">
         <div>
           {/* Premium Multi-theme Text Gradient */}
           <h1
@@ -80,7 +80,7 @@ export function RippleEffectBackGround() {
         </div>
 
         {/* image/profile wrapper */}
-        <div ref={profileRef} className="will-change-transform">
+        <div ref={profileRef} className="will-change-transform hidden md:block">
           <ProfileImage />
         </div>
       </div>
