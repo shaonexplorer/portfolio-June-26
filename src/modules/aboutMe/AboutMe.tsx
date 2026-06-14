@@ -230,7 +230,7 @@ export default function AboutMe() {
             <CardHeader className="pb-2">
               <CardTitle className="text-lg font-bold">My Mission</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="-mt-2">
               <CardDescription className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed">
                 Bridge the power of AI with robust full‑stack development to
                 craft fast, secure, and intelligent web solutions that solve

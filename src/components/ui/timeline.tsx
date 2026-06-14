@@ -43,7 +43,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           scrollTrigger: {
             trigger: triggerRef.current,
             // Starts when the timeline top section meets 20% of viewport height
-            start: "top 50%",
+            start: "top 20%",
             // Ends when the bottom of the timeline meets 60% of viewport height
             end: "bottom 60%",
             scrub: true,
@@ -66,7 +66,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     >
       <div className="flex flex-col">
         <h1 className="text-lg font-medium ml-1 md:mt-22 mt-6">My Journey</h1>
-        <p className="text-muted-foreground  ml-1 md:mt-5 text-sm">
+        <p className="text-muted-foreground  ml-1  text-sm">
           A look at my professional journey so far.
         </p>
       </div>
