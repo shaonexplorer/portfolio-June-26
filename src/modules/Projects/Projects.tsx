@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Code2 } from "lucide-react";
 import GithubIcon from "./github-svg";
 import { ProjectDetails, Project } from "./ProjectDetails";
 
@@ -113,25 +113,23 @@ export function Projects() {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Use fromTo to strictly override any Tailwind opacity bugs
+      // Staggered reveal animation
       gsap.fromTo(
-        ".project-card",
+        ".project-card-wrapper",
         {
           opacity: 0,
-          y: 50,
+          y: 80,
         },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.15,
-          duration: 0.8,
+          stagger: 0.12,
+          duration: 0.9,
           ease: "power4.out",
-          clearProps: "transform", // Allows hover translate transitions to work cleanly after load
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 85%", // Triggers when container reaches 85% from top of screen
+            start: "top 90%",
             toggleActions: "play none none none",
-            // invalidateOnRefresh: true, // Forces recalculation if content sizes shift dynamically
           },
         },
       );
@@ -152,73 +150,91 @@ export function Projects() {
     <section
       id="projects"
       ref={containerRef}
-      className="py-12 md:py-22 px-4 md:px-8 max-w-7xl mx-auto"
+      className="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto"
     >
-      <h2 className="text-3xl font-bold mb-4 text-center">Recent Projects</h2>
-      <p className="text-center text-neutral-600 dark:text-neutral-300 mb-18 max-w-2xl mx-auto">
-        A selection of recent work showcasing various technologies, live demos,
-        and source code repositories.
-      </p>
+      {/* Section Header */}
+      <div className="text-center mb-16">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+          <Code2 className="h-4 w-4" />
+          <span>Engineering Portfolio</span>
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          Projects
+        </h2>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          A curated collection of full-stack applications built with modern
+          technologies and AI integration.
+        </p>
+      </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Project Grid - Staggered Layout */}
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {demoProjects.map((proj, idx) => (
           <div
             key={idx}
             onClick={() => handleProjectClick(proj)}
-            className="project-card flex flex-col group relative overflow-hidden bg-white dark:bg-neutral-800 rounded-xl shadow-lg border border-neutral-200 dark:border-neutral-700 transition-[box-shadow,transform] duration-300 hover:-translate-y-1 hover:shadow-2xl cursor-pointer"
+            className="project-card-wrapper cursor-pointer"
           >
-            {/* Image Wrapper */}
-            <div className="overflow-hidden h-48 w-full">
-              <img
-                src={proj.image}
-                alt={`${proj.title} screenshot`}
-                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-
-            <div className="p-5 pb-0 flex-1 flex flex-col">
-              <h3 className="text-xl font-semibold mb-2 text-neutral-900 dark:text-neutral-100 group-hover:text-primary transition-colors">
-                {proj.title}
-              </h3>
-              <p className="text-neutral-600 dark:text-neutral-300 mb-4 line-clamp-2">
-                {proj.description}
-              </p>
-
-              {/* Tech stack chips */}
-              <div className="flex flex-wrap gap-2 mb-4 mt-auto">
-                {proj.tech.map((t, i) => (
-                  <span
-                    key={i}
-                    className="px-2 py-0.5 bg-neutral-100 dark:bg-neutral-700 text-neutral-800 dark:text-neutral-200 text-xs rounded-full"
-                  >
-                    {t}
-                  </span>
-                ))}
+            <div className="group relative flex flex-col h-full bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              {/* Image Section with Diagonal Cut */}
+              <div className="relative h-48 w-full overflow-hidden">
+                <img
+                  src={proj.image}
+                  alt={`${proj.title} screenshot`}
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                {/* Diagonal Cut Overlay */}
+                <div className="absolute top-0 right-0 w-16 h-16 bg-card border-t-4 border-r-4 border-border -mt-2 -mr-2 group-hover:rotate-[-15deg] transition-transform duration-300" />
               </div>
 
-              {/* Action buttons */}
-              <div className="flex space-x-3 mb-5">
-                <a
-                  href={proj.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="flex-1 flex items-center justify-center gap-2 text-center px-3 py-2 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 rounded font-medium text-sm transition"
-                >
-                  Live Demo
-                  <ExternalLink className="size-4" />
-                </a>
-                <a
-                  href={proj.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="flex-1 flex items-center justify-center gap-2 text-center px-3 py-2 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-200 rounded font-medium text-sm transition"
-                >
-                  GitHub
-                  <GithubIcon size={17} />
-                </a>
+              {/* Content Section */}
+              <div className="flex-1 p-6 flex flex-col">
+                {/* Title */}
+                <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  {proj.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                  {proj.description}
+                </p>
+
+                {/* Tech Stack Tags */}
+                <div className="flex flex-wrap gap-1.5 mb-4 mt-auto">
+                  {proj.tech.map((t, i) => (
+                    <span
+                      key={i}
+                      className="px-2 py-0.5 text-xs font-medium rounded-full bg-secondary text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-2">
+                  <a
+                    href={proj.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors text-sm font-medium"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Live
+                  </a>
+                  <a
+                    href={proj.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex-1 flex items-center justify-center gap-1.5 px-3 py-1.5 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors text-sm font-medium"
+                  >
+                    <GithubIcon size={14} />
+                    Code
+                  </a>
+                </div>
               </div>
             </div>
           </div>

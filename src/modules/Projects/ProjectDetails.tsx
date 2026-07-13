@@ -38,7 +38,10 @@ export function ProjectDetails({
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] flex flex-col bg-background p-0">
         {/* Project Image with Animation */}
-        <div className="relative h-56 w-full overflow-hidden rounded-t-xl">
+        <div className="relative h-56 w-full overflow-hidden">
+          {/* Diagonal Cut Effect */}
+          <div className="absolute top-0 right-0 w-20 h-20 border-b-4 border-r-4 border-border -mb-2 -mr-2" />
+
           {!imageLoaded && (
             <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 animate-pulse" />
           )}
@@ -56,6 +59,8 @@ export function ProjectDetails({
               onLoad={() => setImageLoaded(true)}
               priority={isOpen}
             />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
           </div>
         </div>
 
@@ -63,10 +68,10 @@ export function ProjectDetails({
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {/* Title and Tech Stack */}
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-3">
+            <h2 className="text-2xl font-bold text-foreground mb-2">
               {project.title}
             </h2>
-            <p className="text-muted-foreground mb-4">{project.description}</p>
+            <p className="text-muted-foreground">{project.description}</p>
           </div>
 
           {/* Tech Stack */}
@@ -74,7 +79,7 @@ export function ProjectDetails({
             <h3 className="text-sm font-semibold text-foreground mb-3">
               Tech Stack
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {project.tech.map((tech) => (
                 <Badge
                   key={tech}
@@ -148,7 +153,7 @@ export function ProjectDetails({
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors text-sm font-medium"
           >
             <ExternalLink className="h-4 w-4" />
             Live Demo
@@ -157,9 +162,9 @@ export function ProjectDetails({
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors text-sm font-medium"
           >
-            <GithubIcon />
+            <GithubIcon size={16} />
             GitHub
           </a>
         </div>
