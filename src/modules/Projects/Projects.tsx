@@ -1,20 +1,18 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ExternalLink } from "lucide-react";
 import GithubIcon from "./github-svg";
+import { ProjectDetails, Project } from "./ProjectDetails";
 
 // Safely register plugin if window exists
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const imageUrl =
-  "https://images.unsplash.com/photo-1663765970236-f2acfde22237?q=80&w=3542&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
-const demoProjects = [
+const demoProjects: Project[] = [
   {
     title: "Help Desk | Customer Support",
     description:
@@ -30,6 +28,22 @@ const demoProjects = [
     ],
     live: "https://help-desk-t0ga.onrender.com",
     github: "https://github.com/shaonexplorer/Help-Desk",
+    features: [
+      "Real-time chat support with WebSocket connections",
+      "AI-powered ticket categorization and suggestions",
+      "Multi-department ticket routing",
+      "Customer satisfaction rating system",
+    ],
+    challenges: [
+      "Integrating OpenAI API for intelligent responses",
+      "Handling real-time WebSocket connections at scale",
+      "Building responsive UI for both agents and customers",
+    ],
+    solutions: [
+      "Implemented Socket.IO for low-latency communication",
+      "Created custom prompt templates for consistent AI responses",
+      "Designed intuitive dashboard with role-based views",
+    ],
   },
   {
     title: "Project Management App",
@@ -46,6 +60,22 @@ const demoProjects = [
     ],
     live: "https://ph-project-management-app-client.onrender.com",
     github: "https://github.com/shaonexplorer/PH-Project-management-App-client",
+    features: [
+      "Kanban-style task boards with drag-and-drop",
+      "Team collaboration with @mentions and comments",
+      "Analytics dashboard with project progress tracking",
+      "Role-based access control",
+    ],
+    challenges: [
+      "Managing complex state across multiple views",
+      "Implementing optimistic updates for smooth UX",
+      "Designing responsive layouts for all screen sizes",
+    ],
+    solutions: [
+      "Used Tanstack Query for server state management",
+      "Implemented Zustand for local UI state",
+      "Built reusable components with Shadcn UI library",
+    ],
   },
   {
     title: "Guess the Word | Game",
@@ -55,11 +85,28 @@ const demoProjects = [
     tech: ["React", "API", "Tailwind CSS", "Vite"],
     live: "https://stupendous-piroshki-8f5543.netlify.app/",
     github: "https://github.com/shaonexplorer/game-guess-the-word",
+    features: [
+      "Word guessing with hints and guesses counter",
+      "Multiple difficulty levels",
+      "Leaderboard with high scores",
+      "Responsive design for mobile and desktop",
+    ],
+    challenges: [
+      "Creating engaging game mechanics",
+      "Managing game state efficiently",
+      "Ensuring cross-browser compatibility",
+    ],
+    solutions: [
+      "Used React hooks for clean state management",
+      "Implemented CSS transitions for smooth animations",
+      "Built with Vite for fast development experience",
+    ],
   },
 ];
 
 export function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
     // Explicit safety guard for Next.js Server Components / Hydration
@@ -93,6 +140,14 @@ export function Projects() {
     return () => ctx.revert();
   }, []);
 
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+  };
+
+  const handleCloseDialog = () => {
+    setSelectedProject(null);
+  };
+
   return (
     <section
       id="projects"
@@ -109,8 +164,8 @@ export function Projects() {
         {demoProjects.map((proj, idx) => (
           <div
             key={idx}
-            // Removed manual `opacity-0` classes which conflicted with the .from math engine
-            className="project-card flex flex-col group relative overflow-hidden bg-white dark:bg-neutral-800 rounded-xl shadow-lg border border-neutral-200 dark:border-neutral-700 transition-[box-shadow,transform] duration-300 hover:-translate-y-1 hover:shadow-2xl"
+            onClick={() => handleProjectClick(proj)}
+            className="project-card flex flex-col group relative overflow-hidden bg-white dark:bg-neutral-800 rounded-xl shadow-lg border border-neutral-200 dark:border-neutral-700 transition-[box-shadow,transform] duration-300 hover:-translate-y-1 hover:shadow-2xl cursor-pointer"
           >
             {/* Image Wrapper */}
             <div className="overflow-hidden h-48 w-full">
@@ -148,6 +203,7 @@ export function Projects() {
                   href={proj.live}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
                   className="flex-1 flex items-center justify-center gap-2 text-center px-3 py-2 bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-100 dark:hover:bg-neutral-200 text-white dark:text-neutral-900 rounded font-medium text-sm transition"
                 >
                   Live Demo
@@ -157,6 +213,7 @@ export function Projects() {
                   href={proj.github}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
                   className="flex-1 flex items-center justify-center gap-2 text-center px-3 py-2 bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-neutral-800 dark:text-neutral-200 rounded font-medium text-sm transition"
                 >
                   GitHub
@@ -167,6 +224,13 @@ export function Projects() {
           </div>
         ))}
       </div>
+
+      {/* Project Details Dialog */}
+      <ProjectDetails
+        project={selectedProject}
+        isOpen={!!selectedProject}
+        onClose={handleCloseDialog}
+      />
     </section>
   );
 }
