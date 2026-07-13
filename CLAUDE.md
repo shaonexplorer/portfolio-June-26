@@ -28,6 +28,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - `Hero/` - Landing page hero section
   - `AboutSection/` - About me section
   - `aboutMe/AboutMe.tsx` - Journey timeline with certifications (Programming Hero Bootcamp, Junior MERN Developer at SoftVence, Scrimba AI Engineer Path, Claude Code for Professional Developers)
+  - `Projects/` - Project showcase with modal details
+    - `Projects.tsx` - Project grid with GSAP animations and click-to-open dialog
+    - `ProjectDetails.tsx` - Modal dialog showing detailed project info (image, tech stack, features, challenges, solutions)
+    - `github-svg.tsx` - Custom GitHub icon component
   - `NavBar/` - Navigation and floating dock
 - `src/hooks/` - Custom React hooks (e.g., `use-mobile.ts`)
 - `src/lib/` - Utility functions and helpers
@@ -63,3 +67,32 @@ The `src/modules/aboutMe/AboutMe.tsx` component displays a journey timeline with
 
 4. **Claude Code for Professional Developers | Certification Completion** (July 2026)
    - AI-Assisted Development, Professional Workflows
+
+## Projects Module Notes
+
+The `src/modules/Projects/` directory contains a project showcase page with:
+
+### Design Features
+- **Diagonal Cut Effect**: CSS-based diagonal cut on card top-right corners for distinctive visual identity
+- **Staggered Grid**: Projects animate in with 0.12s staggered delay using GSAP
+- **Gradient Overlays**: Subtle dark-to-transparent gradients on images for better text readability
+- **Interactive Tech Badges**: Hover-responsive badges that scale and change color
+
+### Components
+- **Projects.tsx**: Grid layout with project cards, click handler opens modal
+- **ProjectDetails.tsx**: Modal dialog with detailed project information:
+  - Project image with fade-in animation
+  - Tech stack badges
+  - Features, Challenges, and Solutions sections
+  - Sticky action buttons (Live Demo, GitHub)
+
+### Data Structure
+Each project includes:
+- `title`, `description`, `image`, `tech` (array), `live`, `github`
+- Optional: `features[]`, `challenges[]`, `solutions[]` for detailed view
+
+### Implementation Notes
+- Uses Next.js `<Image />` component in modal (optimized)
+- Uses `<img>` in card grid (performance consideration)
+- Dialog uses shadcn/ui Dialog component
+- GSAP ScrollTrigger for entry animations
