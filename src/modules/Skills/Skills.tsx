@@ -39,7 +39,7 @@ const skillsData = [
   {
     category: "AI & Services",
     icon: Brain,
-    subtitle: "Integrations with AI SDKs and cloud services",
+    subtitle: "Integrations with AI SDKs",
     gradient: "from-cyan-500 to-blue-600",
     skills: [
       { name: "AI SDKs", level: 92 },
@@ -117,7 +117,7 @@ export function Skills() {
                 start: "top 90%",
                 toggleActions: "play none none none",
               },
-            }
+            },
           );
 
           // Counter animation
@@ -166,7 +166,7 @@ export function Skills() {
       </header>
 
       {/* Skills list - stacked horizontal bars */}
-      <div className="space-y-8">
+      <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {skillsData.map((item) => {
           const Icon = item.icon;
 
@@ -180,7 +180,7 @@ export function Skills() {
                 <div
                   className={cn(
                     "inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r",
-                    item.gradient
+                    item.gradient,
                   )}
                 >
                   <Icon className="h-5 w-5 text-white" />
@@ -198,10 +198,7 @@ export function Skills() {
               {/* Skills as horizontal bars */}
               <div className="px-6 pb-6 space-y-3">
                 {item.skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="skill-item group"
-                  >
+                  <div key={skill.name} className="skill-item group">
                     <div className="flex items-center justify-between mb-1.5">
                       <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                         {skill.name}
@@ -217,7 +214,7 @@ export function Skills() {
                         className={cn(
                           "skill-bar h-full rounded-full w-0 opacity-80",
                           "bg-gradient-to-r",
-                          item.gradient
+                          item.gradient,
                         )}
                       />
                     </div>
