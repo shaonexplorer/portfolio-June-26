@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ExternalLink, GitCompare, Link } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import GithubIcon from "./github-svg";
 
 // Safely register plugin if window exists
@@ -16,29 +16,45 @@ const imageUrl =
 
 const demoProjects = [
   {
-    title: "AI Chatbot",
-    description: "A Next.js AI chatbot powered by Claude SDK.",
-    image: "/images/projects/ai-chatbot.png",
-    tech: ["Next.js", "TypeScript", "Claude SDK", "Tailwind"],
-    live: "https://ai-chatbot.example.com",
-    github: "https://github.com/yourusername/ai-chatbot",
-  },
-  {
-    title: "Portfolio Site",
+    title: "Help Desk | Customer Support",
     description:
-      "Personal portfolio showcasing projects, built with Tailwind & Shadcn UI.",
-    image: "/images/projects/portfolio.png",
-    tech: ["Next.js", "Tailwind", "Shadcn UI"],
-    live: "https://portfolio.example.com",
-    github: "https://github.com/yourusername/portfolio",
+      "AI powered realtime customer support application featuring ticket management system.",
+    image: "/projects/help-desk.png",
+    tech: [
+      "React",
+      "Typescript",
+      "Express.js",
+      "PostgreSQL",
+      "Socket.IO",
+      "OpenAI API",
+    ],
+    live: "https://help-desk-t0ga.onrender.com",
+    github: "https://github.com/shaonexplorer/Help-Desk",
   },
   {
-    title: "E‑commerce Demo",
-    description: "Full‑stack shop with Stripe integration and cart management.",
-    image: "/images/projects/ecommerce.png",
-    tech: ["Next.js", "Stripe", "Prisma", "Tailwind"],
-    live: "https://shop.example.com",
-    github: "https://github.com/yourusername/ecommerce-demo",
+    title: "Project Management App",
+    description:
+      "A fullstack project management application with task tracking, team collaboration, and analytics dashboard.",
+    image: "/projects/project-app.png",
+    tech: [
+      "Next.js",
+      "Typescript",
+      "Shadcn UI",
+      "Tanstack Query",
+      "Prisma",
+      "React Hook Form",
+    ],
+    live: "https://ph-project-management-app-client.onrender.com",
+    github: "https://github.com/shaonexplorer/PH-Project-management-App-client",
+  },
+  {
+    title: "Guess the Word | Game",
+    description:
+      "A simple yet engaging word guessing game built with React and Tailwind CSS.",
+    image: "/projects/game.png",
+    tech: ["React", "API", "Tailwind CSS", "Vite"],
+    live: "https://stupendous-piroshki-8f5543.netlify.app/",
+    github: "https://github.com/shaonexplorer/game-guess-the-word",
   },
 ];
 
@@ -99,9 +115,9 @@ export function Projects() {
             {/* Image Wrapper */}
             <div className="overflow-hidden h-48 w-full">
               <img
-                src={imageUrl}
+                src={proj.image}
                 alt={`${proj.title} screenshot`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
             </div>

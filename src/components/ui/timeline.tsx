@@ -64,7 +64,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="bg-white dark:bg-neutral-950 font-sans w-full md:w-fit md:ml-auto flex-1"
       ref={containerRef}
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col ">
         <h1 className="text-lg font-medium ml-1 md:mt-22 mt-6">My Journey</h1>
         <p className="text-muted-foreground  ml-1  text-sm">
           A look at my professional journey so far.

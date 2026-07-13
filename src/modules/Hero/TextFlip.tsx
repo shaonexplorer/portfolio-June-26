@@ -85,8 +85,9 @@ export function TextFlip() {
         className="max-w-xl mt-4 text-base text-neutral-600 dark:text-neutral-400 will-change-transform"
       >
         Passionate Fullstack Developer with expertise in crafting dynamic web
-        applications. Specialized in React, Next.js, and AI, I am dedicated to
-        delivering high-quality code and driving impactful projects forward.
+        applications. Specialized in React, Next.js, Express.js and AI, I am
+        dedicated to delivering high-quality code and driving impactful projects
+        forward.
       </p>
 
       <div className="flex flex-wrap gap-4 mt-6">

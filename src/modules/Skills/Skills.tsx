@@ -15,19 +15,23 @@ export function Skills() {
       title: "Frontend",
       subtitle: "UI/UX and client‑side technologies",
       skills: [
-        { name: "React", level: 80, color: "from-purple-500 to-indigo-600" },
+        { name: "React", level: 87, color: "from-purple-500 to-indigo-600" },
         { name: "Next.js", level: 85, color: "from-blue-500 to-cyan-600" },
         { name: "TypeScript", level: 88, color: "from-sky-500 to-indigo-600" },
-        { name: "Tailwind CSS", level: 92, color: "from-pink-500 to-rose-600" },
+        {
+          name: "Tailwind CSS",
+          level: 92,
+          color: "from-lime-500 to-green-300",
+        },
       ],
     },
     {
       title: "Backend",
       subtitle: "Server‑side logic and APIs",
       skills: [
-        { name: "Node.js", level: 87, color: "from-green-500 to-emerald-600" },
-        { name: "PostgreSQL", level: 89, color: "from-rose-500 to-pink-600" },
-        { name: "MongoDB", level: 88, color: "from-emerald-500 to-green-600" },
+        { name: "Node.js", level: 87, color: "from-lime-500 to-emerald-600" },
+        { name: "PostgreSQL", level: 89, color: "from-rose-500 to-yellow-300" },
+        { name: "MongoDB", level: 88, color: "from-sky-500 to-cyan-300" },
         {
           name: "Express.js",
           level: 92,
@@ -39,10 +43,10 @@ export function Skills() {
       title: "AI & Services",
       subtitle: "Integrations with AI SDKs and cloud services",
       skills: [
-        { name: "AI SDKs", level: 92, color: "from-purple-400 to-fuchsia-600" },
+        { name: "AI SDKs", level: 92, color: "from-purple-400 to-fuchsia-300" },
         { name: "AI Agent", level: 88, color: "from-blue-500 to-cyan-600" },
         { name: "MCP Server", level: 90, color: "from-sky-500 to-indigo-600" },
-        { name: "RAG", level: 92, color: "from-pink-500 to-rose-600" },
+        { name: "RAG", level: 92, color: "from-lime-500 to-green-300" },
       ],
     },
   ];
@@ -162,7 +166,7 @@ export function Skills() {
                     <div
                       data-level={skill.level}
                       className={cn(
-                        "skill-bar h-full rounded-full w-0",
+                        "skill-bar h-full rounded-full w-0 opacity-80",
                         skill.color
                           ? `bg-gradient-to-r ${skill.color}`
                           : "bg-gradient-to-r from-purple-500 to-indigo-600",

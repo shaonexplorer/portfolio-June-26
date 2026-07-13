@@ -22,7 +22,7 @@ interface JourneyStep {
 
 const steps: JourneyStep[] = [
   {
-    title: "Programming Hero Bootcamp",
+    title: "Programming Hero Bootcamp | Certification Completion",
     date: "Jan 2025",
     timeStamp: "2025",
     description: (
@@ -108,8 +108,39 @@ const steps: JourneyStep[] = [
     ),
   },
   {
-    title: "Scrimba AI Engineer Path",
+    title: "Scrimba AI Engineer Path | Certification Completion ",
     date: "May 2026",
+    timeStamp: "2026",
+    description: (
+      <div className="space-y-3 text-neutral-700 dark:text-neutral-300 text-sm md:text-base">
+        <p>
+          Completed an intensive specialized path dedicated to deep engineering
+          frameworks around Large Language Models (LLMs) and artificial
+          intelligence agents.
+        </p>
+        <div className="space-y-1.5">
+          <p className="pl-4 relative before:content-['•'] before:absolute before:left-0 text-sm">
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">
+              AI-First Products:
+            </span>{" "}
+            Handled embedding generations, prompt vector optimizations, and
+            functional tool-calling loops.
+          </p>
+          <p className="pl-4 relative before:content-['•'] before:absolute before:left-0 text-sm">
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">
+              Contextual Memory:
+            </span>{" "}
+            Built real-time semantic application instances managing contextual
+            user memory state patterns.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title:
+      "Claude Code for Professional Developers | Certification Completion ",
+    date: "July 2026",
     timeStamp: "2026",
     description: (
       <div className="space-y-3 text-neutral-700 dark:text-neutral-300 text-sm md:text-base">
