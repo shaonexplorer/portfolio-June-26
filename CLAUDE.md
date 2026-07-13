@@ -64,6 +64,13 @@ When improving UI designs:
 
 The `src/modules/aboutMe/AboutMe.tsx` component displays a journey timeline with the following certifications:
 
+### Design Features
+- **Gradient Step Indicators**: Each journey step has a distinctive gradient circle icon (Purple→Indigo, Emerald→Teal, Cyan→Blue, Amber→Orange)
+- **Vertical Timeline Layout**: Steps are displayed in a vertical stack with connector lines
+- **What I Love Building Section**: Grid layout showing areas of expertise with icon badges
+- **Signature Journey Path**: Visual timeline with gradient accent markers that differentiates it from generic timelines
+
+### Certifications
 1. **Programming Hero Bootcamp | Certification Completion** (Jan 2025)
    - Advanced Frontend Engineering, Robust Backend Architectures, Database Design & Management, Security & Identity Control, Real-World Deliverables
 
