@@ -10,6 +10,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Lint code**: `npm run lint` (uses ESLint with Next.js config)
 - **Run type checking**: `npx tsc --noEmit`
 
+## Design Guidelines
+
+When improving UI designs:
+- Use the `/frontend-design` skill to create distinctive, opinionated designs that don't feel templated
+- Use the `/shadcn` skill for shadcn/ui components, styling, and component composition
+- Use `npx ctx7@latest library <name>` to fetch current documentation for libraries, frameworks, and tools
+- Match the project's design language: gradient accents, subtle shadows, hover animations, and consistent spacing
+
 ## Code Architecture
 
 ### Project Structure
@@ -26,8 +34,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `src/modules/` - Feature-specific modules
   - `chat/` - Chat interface components (Chat.tsx, chat-bot.tsx)
   - `Hero/` - Landing page hero section
-  - `AboutSection/` - About me section
   - `aboutMe/AboutMe.tsx` - Journey timeline with certifications (Programming Hero Bootcamp, Junior MERN Developer at SoftVence, Scrimba AI Engineer Path, Claude Code for Professional Developers)
+  - `Contact/` - Contact section with form
   - `Projects/` - Project showcase with modal details
     - `Projects.tsx` - Project grid with GSAP animations and click-to-open dialog
     - `ProjectDetails.tsx` - Modal dialog showing detailed project info (image, tech stack, features, challenges, solutions)
@@ -52,7 +60,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Custom font loading using `next/font` for Geist font family
 - Dark mode support through Tailwind's dark variant
 
-## AboutMe Component Notes
+## AboutMe Module Notes
 
 The `src/modules/aboutMe/AboutMe.tsx` component displays a journey timeline with the following certifications:
 
@@ -96,3 +104,36 @@ Each project includes:
 - Uses `<img>` in card grid (performance consideration)
 - Dialog uses shadcn/ui Dialog component
 - GSAP ScrollTrigger for entry animations
+
+## Contact Module Notes
+
+The `src/modules/Contact/` directory contains a contact section with:
+
+### Components
+- **Contact.tsx**: Contact page with contact information and form
+- **ContactForm.tsx**: Form component for sending messages
+
+### Design Features
+- **Signature Accent Bar**: Gradient accent bar on the left side of contact info
+- **Icon Badges**: Contact info items with clickable icon badges that change on hover
+- **Section Header**: Badge with MessageSquare icon matching the project's style
+- **Entry Animation**: Fade-in animation for the entire section on mount
+- **Shadcn UI Forms**: Uses Input, Textarea, and Button components with validation
+
+## Skills Module Notes
+
+The `src/modules/Skills/` directory contains a skills showcase with:
+
+### Design Features
+- **Category-based Organization**: Skills grouped by Frontend, Backend, and AI & Services
+- **Horizontal Bar Visualization**: Clean progress bars with gradient fills that animate on scroll
+- **Gradient Icon Badges**: Each category has a distinctive gradient background for its icon
+- **Hover Interactions**: Skill names change to primary color on hover
+
+### Components
+- **Skills.tsx**: Stacked horizontal bar layout with category headers and animated progress bars
+
+### Implementation Notes
+- Uses GSAP ScrollTrigger for scroll-triggered animations
+- Gradient colors defined per-category for visual distinction
+- Clean, minimal design that complements the Projects section

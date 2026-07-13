@@ -1,15 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-// import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import gsap from "gsap";
 import { toast } from "sonner";
 
 // ---------------------------------------------------------------
@@ -25,13 +23,12 @@ const contactSchema = z.object({
 type ContactFormValues = z.infer<typeof contactSchema>;
 
 /**
- * ContactForm – a modern, animated contact section.
+ * ContactForm – a modern contact form component.
  *
  * Features:
  * • React Hook Form with Zod resolver for type‑safe validation.
  * • Shadcn UI components for consistent styling.
  * • Toast notifications on success / error.
- * • GSAP entry animation (fade‑in & slight upward movement).
  */
 export const ContactForm: React.FC = () => {
   const {
@@ -42,23 +39,6 @@ export const ContactForm: React.FC = () => {
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
   });
-
-  const formRef = useRef<HTMLDivElement>(null);
-
-  // ---------------------------------------------------------------
-  // GSAP animation – runs once when the component mounts.
-  // ---------------------------------------------------------------
-  useEffect(() => {
-    if (formRef.current) {
-      gsap.from(formRef.current, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.1,
-      });
-    }
-  }, []);
 
   // ---------------------------------------------------------------
   // Simulated submit – replace with real API call as needed.
@@ -87,16 +67,13 @@ export const ContactForm: React.FC = () => {
       const responseData = await result.json();
       console.log({ responseData });
       reset();
-    } catch (error) {
+    } catch {
       toast.error("Error sending message");
     }
   };
 
   return (
-    <section ref={formRef} className="flex-1">
-      {/* <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
-        Contact Me
-      </h2> */}
+    <div className="flex-1">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col md:flex-row gap-4 w-full">
           {/* Name */}
@@ -174,6 +151,6 @@ export const ContactForm: React.FC = () => {
           {isSubmitting ? "Sending…" : "Send Message"}
         </Button>
       </form>
-    </section>
+    </div>
   );
 };
