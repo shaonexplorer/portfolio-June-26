@@ -4,61 +4,61 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
+import { Code2, Database, Brain, CheckCircle2 } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export function Skills() {
-  const categories = [
-    {
-      title: "Frontend",
-      subtitle: "UI/UX and client‑side technologies",
-      skills: [
-        { name: "React", level: 87, color: "from-purple-500 to-indigo-600" },
-        { name: "Next.js", level: 85, color: "from-blue-500 to-cyan-600" },
-        { name: "TypeScript", level: 88, color: "from-sky-500 to-indigo-600" },
-        {
-          name: "Tailwind CSS",
-          level: 92,
-          color: "from-lime-500 to-green-300",
-        },
-      ],
-    },
-    {
-      title: "Backend",
-      subtitle: "Server‑side logic and APIs",
-      skills: [
-        { name: "Node.js", level: 87, color: "from-lime-500 to-emerald-600" },
-        { name: "PostgreSQL", level: 89, color: "from-rose-500 to-yellow-300" },
-        { name: "MongoDB", level: 88, color: "from-sky-500 to-cyan-300" },
-        {
-          name: "Express.js",
-          level: 92,
-          color: "from-purple-500 to-indigo-600",
-        },
-      ],
-    },
-    {
-      title: "AI & Services",
-      subtitle: "Integrations with AI SDKs and cloud services",
-      skills: [
-        { name: "AI SDKs", level: 92, color: "from-purple-400 to-fuchsia-300" },
-        { name: "AI Agent", level: 88, color: "from-blue-500 to-cyan-600" },
-        { name: "MCP Server", level: 90, color: "from-sky-500 to-indigo-600" },
-        { name: "RAG", level: 92, color: "from-lime-500 to-green-300" },
-      ],
-    },
-  ];
+// Skill data structure - organized by category
+const skillsData = [
+  {
+    category: "Frontend",
+    icon: Code2,
+    subtitle: "UI/UX and client‑side technologies",
+    gradient: "from-purple-500 to-indigo-600",
+    skills: [
+      { name: "React", level: 87 },
+      { name: "Next.js", level: 85 },
+      { name: "TypeScript", level: 88 },
+      { name: "Tailwind CSS", level: 92 },
+    ],
+  },
+  {
+    category: "Backend",
+    icon: Database,
+    subtitle: "Server‑side logic and APIs",
+    gradient: "from-emerald-500 to-teal-600",
+    skills: [
+      { name: "Node.js", level: 87 },
+      { name: "PostgreSQL", level: 89 },
+      { name: "MongoDB", level: 88 },
+      { name: "Express.js", level: 92 },
+    ],
+  },
+  {
+    category: "AI & Services",
+    icon: Brain,
+    subtitle: "Integrations with AI SDKs and cloud services",
+    gradient: "from-cyan-500 to-blue-600",
+    skills: [
+      { name: "AI SDKs", level: 92 },
+      { name: "AI Agent", level: 88 },
+      { name: "MCP Server", level: 90 },
+      { name: "RAG", level: 92 },
+    ],
+  },
+];
 
+export function Skills() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Animate the section headers and skill cards container
-      gsap.from(".skill-card", {
+      // Animate section header
+      gsap.from(".skill-section-header", {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 85%",
@@ -66,50 +66,78 @@ export function Skills() {
         },
         opacity: 0,
         y: 30,
-        duration: 0.6,
-        stagger: 0.1,
+        duration: 0.8,
         ease: "power3.out",
       });
 
-      // 2. Query all bar elements inside the context and animate cleanly via native targets
-      const bars = gsap.utils.toArray<HTMLElement>(".skill-bar");
+      // Animate category headers with staggered reveal
+      gsap.from(".skill-category-header", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: "power3.out",
+      });
 
-      bars.forEach((bar) => {
-        const targetWidth = bar.getAttribute("data-level") || "0";
+      // Animate skill items
+      const skillItems = gsap.utils.toArray<HTMLElement>(".skill-item");
 
-        // Progress Bar Horizontal Growth Animation
-        gsap.fromTo(
-          bar,
-          { width: "0%" },
-          {
-            width: `${targetWidth}%`,
-            duration: 1.2,
-            ease: "power4.out",
-            scrollTrigger: {
-              trigger: bar,
-              start: "top 90%",
-              toggleActions: "play none none none",
-            },
+      skillItems.forEach((item) => {
+        // Fade in with slight y offset
+        gsap.from(item, {
+          opacity: 0,
+          y: 20,
+          duration: 0.6,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: item,
+            start: "top 90%",
+            toggleActions: "play none none none",
           },
-        );
+        });
 
-        // Optional: Interactive matching dynamic counter ticker text effect
-        const parent = bar.closest(".skill-item-container");
-        const counter = parent?.querySelector(".skill-percent-counter");
-        if (counter) {
-          const counterObj = { value: 0 };
-          gsap.to(counterObj, {
-            value: parseInt(targetWidth, 10),
-            duration: 1.2,
-            ease: "power4.out",
-            scrollTrigger: {
-              trigger: bar,
-              start: "top 90%",
-            },
-            onUpdate: () => {
-              counter.textContent = `${Math.round(counterObj.value)}%`;
-            },
-          });
+        // Skill bar animation
+        const bar = item.querySelector(".skill-bar-fill");
+        if (bar) {
+          const targetWidth = bar.getAttribute("data-level") || "0";
+          gsap.fromTo(
+            bar,
+            { width: "0%" },
+            {
+              width: `${targetWidth}%`,
+              duration: 1.2,
+              ease: "power4.out",
+              scrollTrigger: {
+                trigger: bar,
+                start: "top 90%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+
+          // Counter animation
+          const counter = bar.querySelector(".skill-percent-counter");
+          if (counter) {
+            const counterObj = { value: 0 };
+            gsap.to(counterObj, {
+              value: parseInt(targetWidth, 10),
+              duration: 1.2,
+              ease: "power4.out",
+              scrollTrigger: {
+                trigger: bar,
+                start: "top 90%",
+                toggleActions: "play none none none",
+              },
+              onUpdate: () => {
+                counter.textContent = `${Math.round(counterObj.value)}%`;
+              },
+            });
+          }
         }
       });
     }, containerRef);
@@ -121,63 +149,84 @@ export function Skills() {
     <section
       id="skills"
       ref={containerRef}
-      className="max-w-7xl mx-auto pb-12 md:pb-22 px-4 sm:px-6 lg:px-8 space-y-8"
+      className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 space-y-12"
     >
       {/* Section header */}
-      <header className="text-center mb-18">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+      <header className="skill-section-header text-center mb-12">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+          <CheckCircle2 className="h-4 w-4" />
+          <span>Technical Expertise</span>
+        </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
           My Skills
         </h2>
-        <p className="text-lg text-gray-600 dark:text-gray-400">
-          A quick overview of the technologies I work with daily.
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          A visual overview of the technologies I work with daily.
         </p>
       </header>
 
-      {/* Category cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {categories.map((cat) => (
-          <div
-            key={cat.title}
-            className="skill-card bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex flex-col hover:shadow-lg transition-shadow duration-300"
-          >
-            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-1">
-              {cat.title}
-            </h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-              {cat.subtitle}
-            </p>
+      {/* Skills list - stacked horizontal bars */}
+      <div className="space-y-8">
+        {skillsData.map((item) => {
+          const Icon = item.icon;
 
-            <div className="flex flex-col gap-4">
-              {cat.skills.map((skill) => (
+          return (
+            <div
+              key={item.category}
+              className="skill-category-card bg-card rounded-2xl border border-border shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              {/* Category header */}
+              <div className="flex items-center gap-3 px-6 pt-6 pb-4 border-b border-border/50">
                 <div
-                  key={skill.name}
-                  className="skill-item-container flex flex-col"
+                  className={cn(
+                    "inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r",
+                    item.gradient
+                  )}
                 >
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                      {skill.name}
-                    </span>
-                    <span className="skill-percent-counter text-sm font-medium text-gray-600 dark:text-gray-400">
-                      0%
-                    </span>
-                  </div>
-
-                  <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                    <div
-                      data-level={skill.level}
-                      className={cn(
-                        "skill-bar h-full rounded-full w-0 opacity-80",
-                        skill.color
-                          ? `bg-gradient-to-r ${skill.color}`
-                          : "bg-gradient-to-r from-purple-500 to-indigo-600",
-                      )}
-                    />
-                  </div>
+                  <Icon className="h-5 w-5 text-white" />
                 </div>
-              ))}
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground">
+                    {item.category}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {item.subtitle}
+                  </p>
+                </div>
+              </div>
+
+              {/* Skills as horizontal bars */}
+              <div className="px-6 pb-6 space-y-3">
+                {item.skills.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="skill-item group"
+                  >
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                        {skill.name}
+                      </span>
+                      <span className="text-sm font-medium text-muted-foreground">
+                        {skill.level}%
+                      </span>
+                    </div>
+
+                    <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                      <div
+                        data-level={skill.level}
+                        className={cn(
+                          "skill-bar h-full rounded-full w-0 opacity-80",
+                          "bg-gradient-to-r",
+                          item.gradient
+                        )}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
