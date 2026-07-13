@@ -29,10 +29,10 @@ const demoProjects: Project[] = [
     live: "https://help-desk-t0ga.onrender.com",
     github: "https://github.com/shaonexplorer/Help-Desk",
     features: [
-      "Real-time chat support with WebSocket connections",
+      "Real-time updates/notifications with WebSocket connections",
       "AI-powered ticket categorization and suggestions",
       "Multi-department ticket routing",
-      "Customer satisfaction rating system",
+      "Email Integration for ticket updates and notifications",
     ],
     challenges: [
       "Integrating OpenAI API for intelligent responses",
@@ -87,8 +87,7 @@ const demoProjects: Project[] = [
     github: "https://github.com/shaonexplorer/game-guess-the-word",
     features: [
       "Word guessing with hints and guesses counter",
-      "Multiple difficulty levels",
-      "Leaderboard with high scores",
+
       "Responsive design for mobile and desktop",
     ],
     challenges: [
