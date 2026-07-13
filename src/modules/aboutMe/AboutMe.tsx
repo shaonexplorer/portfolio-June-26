@@ -22,7 +22,8 @@ interface JourneyStep {
 
 const steps: JourneyStep[] = [
   {
-    title: "Programming Hero Bootcamp | Certification Completion",
+    title:
+      "Next Level Web Development Bootcamp - Programming Hero | Certification Completion",
     date: "Jan 2025",
     timeStamp: "2025",
     description: (
@@ -71,7 +72,7 @@ const steps: JourneyStep[] = [
     ),
   },
   {
-    title: "Junior MERN Developer at SoftVence",
+    title: "Junior MERN Developer - SoftVence Agency",
     date: "Jan 2026 – Apr 2026",
     timeStamp: "2026",
     description: (
@@ -96,19 +97,19 @@ const steps: JourneyStep[] = [
             Built state-driven management interfaces and interactive graphs
             using React, Redux Toolkit, and Tailwind CSS.
           </p>
-          <p className="pl-4 relative before:content-['•'] before:absolute before:left-0 text-sm">
+          {/* <p className="pl-4 relative before:content-['•'] before:absolute before:left-0 text-sm">
             <span className="font-semibold text-neutral-900 dark:text-neutral-100">
               DevOps Automation:
             </span>{" "}
             Maintained integrated CI/CD pipelines to achieve automated staging
             environments and testing workflows.
-          </p>
+          </p> */}
         </div>
       </div>
     ),
   },
   {
-    title: "Scrimba AI Engineer Path | Certification Completion ",
+    title: "AI Engineer Path - Scrimba | Certification Completion ",
     date: "May 2026",
     timeStamp: "2026",
     description: (
@@ -139,30 +140,30 @@ const steps: JourneyStep[] = [
   },
   {
     title:
-      "Claude Code for Professional Developers | Certification Completion ",
+      "Claude Code for Professional Developers - Code with Mosh | Certification Completion ",
     date: "July 2026",
     timeStamp: "2026",
     description: (
       <div className="space-y-3 text-neutral-700 dark:text-neutral-300 text-sm md:text-base">
         <p>
-          Completed an intensive specialized path dedicated to deep engineering
-          frameworks around Large Language Models (LLMs) and artificial
-          intelligence agents.
+          Mastered Claude Code, Anthropic&apos;s AI-powered developer assistant,
+          for professional software development workflows, code generation,
+          debugging, and architectural guidance.
         </p>
         <div className="space-y-1.5">
           <p className="pl-4 relative before:content-['•'] before:absolute before:left-0 text-sm">
             <span className="font-semibold text-neutral-900 dark:text-neutral-100">
-              AI-First Products:
+              AI-Assisted Development:
             </span>{" "}
-            Handled embedding generations, prompt vector optimizations, and
-            functional tool-calling loops.
+            Leveraged Claude&apos;s reasoning capabilities for code generation,
+            refactoring, and implementing complex software features.
           </p>
           <p className="pl-4 relative before:content-['•'] before:absolute before:left-0 text-sm">
             <span className="font-semibold text-neutral-900 dark:text-neutral-100">
-              Contextual Memory:
+              Professional Workflows:
             </span>{" "}
-            Built real-time semantic application instances managing contextual
-            user memory state patterns.
+            Integrated AI-powered pair programming into daily development
+            cycles, optimizing productivity and code quality.
           </p>
         </div>
       </div>
