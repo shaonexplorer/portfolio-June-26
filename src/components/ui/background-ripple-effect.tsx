@@ -3,7 +3,7 @@ import React, { useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export const BackgroundRippleEffect = ({
-  rows = 8,
+  rows = 9,
   cols = 35,
   cellSize = 56,
 }: {
@@ -31,7 +31,7 @@ export const BackgroundRippleEffect = ({
         <div className="pointer-events-none absolute inset-0 z-[2] h-full w-full overflow-hidden" />
         <DivGrid
           key={`base-${rippleKey}`}
-          className="mask-radial-from-20% mask-radial-at-top opacity-600"
+          className="mask-radial-from-0.5 mask-radial-at-top opacity-500"
           rows={rows}
           cols={cols}
           cellSize={cellSize}
