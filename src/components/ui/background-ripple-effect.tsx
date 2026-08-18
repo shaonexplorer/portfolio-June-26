@@ -3,7 +3,7 @@ import React, { useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export const BackgroundRippleEffect = ({
-  rows = 9,
+  rows = 4,
   cols = 35,
   cellSize = 56,
 }: {

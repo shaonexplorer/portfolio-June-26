@@ -64,7 +64,7 @@ export function RippleEffectBackGround() {
       className="relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden"
     >
       <div ref={bgRef} className="absolute inset-0 z-0 will-change-transform">
-        <BackgroundRippleEffect />
+        {/* <BackgroundRippleEffect /> */}
       </div>
 
       <div className="md:mt-20 my-auto max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-6 justify-between items-center w-full z-10">

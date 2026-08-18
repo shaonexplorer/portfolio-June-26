@@ -196,7 +196,7 @@ export function Skills() {
               </div>
 
               {/* Skills as horizontal bars */}
-              <div className="px-6 pb-6 space-y-3">
+              <div className="px-6 py-6 space-y-3">
                 {item.skills.map((skill) => (
                   <div key={skill.name} className="skill-item group">
                     <div className="flex items-center justify-between mb-1.5">
