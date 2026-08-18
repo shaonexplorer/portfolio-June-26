@@ -236,7 +236,7 @@ export default function AboutMe() {
       {/* Timeline Layout */}
       <div className="relative w-full overflow-clip flex flex-col mx-auto lg:flex-row gap-6 md:gap-10 justify-between px-[1px]">
         {/* Left Column: My Mission & Interests */}
-        <div className="lg:max-w-lg w-full mt-10 md:mt-20 lg:sticky top-20 self-start flex flex-col gap-6">
+        <div className="flex-1 lg:max-w-lg w-full mt-10 md:mt-20 lg:sticky top-20 self-start flex flex-col gap-6">
           {/* profile image */}
 
           <div className="w-full px-4 py-2 rounded-md bg-card flex items-center gap-2 md:hidden">
