@@ -9,7 +9,18 @@ export function ProfileImage() {
   const profileImageUrl = "/profile-photo-abir-removebg.png";
 
   return (
-    <div className="sm:h-[40rem] relative flex items-center lg:justify-end">
+    <div className="relative flex h-full w-full items-center lg:justify-end sm:mt-0 sm:h-160">
+      {/* Soft aura glow — gently breathes behind the card */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-85 w-85 -translate-x-1/2 -translate-y-1/2
+                   rounded-full bg-[radial-gradient(ellipse_at_center,var(--tw-gradient-stops))]
+                   from-fuchsia-500/30 via-cyan-400/10 to-transparent blur-(--glow-blur) opacity-70
+                   animate-[aura-pulse_3.5s_ease-in-out_infinite]
+                   motion-reduce:animate-none motion-reduce:blur-0"
+        style={{ "--glow-blur": "40px" } as React.CSSProperties}
+      />
+
       <DirectionAwareHover
         imageUrl={profileImageUrl}
         className="cursor-pointer"

@@ -19,6 +19,32 @@
       opacity: 0.4;
     }
   }
+
+  /* Gentle breathing pulse for the aura halo behind the profile card */
+  @keyframes aura-pulse {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.04);
+    }
+  }
+
+  /* Scale + opacity pulse for the orbiting dots */
+  @keyframes dot-pulse {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
