@@ -218,6 +218,26 @@ const loves = [
 ];
 
 export default function AboutMe() {
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(process.env.NEXT_PUBLIC_CHAT_API as string, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: "Hello",
+          }),
+        });
+        const data = await res.json();
+        console.log("Fetched Data:", data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <section
       id="about"
