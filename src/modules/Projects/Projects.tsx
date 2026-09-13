@@ -13,43 +13,77 @@ if (typeof window !== "undefined") {
 }
 
 const demoProjects: Project[] = [
+  // {
+  //   title: "Help Desk | Customer Support",
+  //   description:
+  //     "AI powered realtime customer support application featuring ticket management system.",
+  //   image: "/projects/help-desk.png",
+  //   tech: [
+  //     "React",
+  //     "Typescript",
+  //     "Express.js",
+  //     "PostgreSQL",
+  //     "Socket.IO",
+  //     "OpenAI API",
+  //   ],
+  //   live: "https://help-desk-t0ga.onrender.com",
+  //   github: "https://github.com/shaonexplorer/Help-Desk",
+  //   features: [
+  //     "Real-time updates/notifications with WebSocket connections",
+  //     "AI-powered ticket categorization and suggestions",
+  //     "Multi-department ticket routing",
+  //     "Email Integration for ticket updates and notifications",
+  //   ],
+  //   challenges: [
+  //     "Integrating OpenAI API for intelligent responses",
+  //     "Handling real-time WebSocket connections at scale",
+  //     "Building responsive UI for both agents and customers",
+  //   ],
+  //   solutions: [
+  //     "Implemented Socket.IO for low-latency communication",
+  //     "Created custom prompt templates for consistent AI responses",
+  //     "Designed intuitive dashboard with role-based views",
+  //   ],
+  // },
   {
-    title: "Help Desk | Customer Support",
+    title: "Pharmacy Management System | Fullstack Application",
     description:
-      "AI powered realtime customer support application featuring ticket management system.",
-    image: "/projects/help-desk.png",
+      "A comprehensive pharmacy management system with inventory tracking, point of sale integration, and reporting features.",
+    image: "/projects/pharmacy-dashboard.png",
     tech: [
-      "React",
+      "Next.js",
       "Typescript",
       "Express.js",
       "PostgreSQL",
-      "Socket.IO",
+      "Tanstack Query",
       "OpenAI API",
     ],
-    live: "https://help-desk-t0ga.onrender.com",
-    github: "https://github.com/shaonexplorer/Help-Desk",
+    live: "https://pharmacy-point.netlify.app",
+    github: "https://github.com/shaonexplorer/Pharmacy-Point",
     features: [
-      "Real-time updates/notifications with WebSocket connections",
-      "AI-powered ticket categorization and suggestions",
-      "Multi-department ticket routing",
-      "Email Integration for ticket updates and notifications",
+      "Inventory management with real-time stock updates",
+      "Reporting and analytics dashboard for sales and inventory",
+      "Role-based access control for pharmacists and staff",
+      "Analytical insights for sales trends and recommendations",
+      "Point of Sale (POS) system for quick transactions",
+      "Customer management with due tracking and notifications",
     ],
     challenges: [
-      "Integrating OpenAI API for intelligent responses",
-      "Handling real-time WebSocket connections at scale",
-      "Building responsive UI for both agents and customers",
+      "Point of Sale (POS) integration with inventory system",
+      "Handling real-time updates for inventory and sales",
+      "Designing a user-friendly interface for pharmacists and staff",
     ],
     solutions: [
-      "Implemented Socket.IO for low-latency communication",
-      "Created custom prompt templates for consistent AI responses",
-      "Designed intuitive dashboard with role-based views",
+      "Implemented Tanstack Query for efficient data fetching and caching",
+      "Used OpenAI API for generating sales insights and recommendations",
+      "Built responsive UI with Next.js and Tailwind CSS for optimal user experience",
     ],
   },
   {
-    title: "Project Management App",
+    title: "Kanban Board | Project Management",
     description:
       "A fullstack project management application with task tracking, team collaboration, and analytics dashboard.",
-    image: "/projects/project-app.png",
+    image: "/projects/kanban.png",
     tech: [
       "Next.js",
       "Typescript",
@@ -58,8 +92,8 @@ const demoProjects: Project[] = [
       "Prisma",
       "React Hook Form",
     ],
-    live: "https://ph-project-management-app-client.onrender.com",
-    github: "https://github.com/shaonexplorer/PH-Project-management-App-client",
+    live: "https://mini-kanban-abir.netlify.app/",
+    github: "https://github.com/shaonexplorer/Kanban",
     features: [
       "Kanban-style task boards with drag-and-drop",
       "Team collaboration with @mentions and comments",
@@ -78,7 +112,7 @@ const demoProjects: Project[] = [
     ],
   },
   {
-    title: "Guess the Word | Game",
+    title: "Guess the Word | Fun Game",
     description:
       "A simple yet engaging word guessing game built with React and Tailwind CSS.",
     image: "/projects/game.png",
